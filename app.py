@@ -15,12 +15,12 @@ app.config.from_object(os.environ['ENV_SETTINGS'])
 db = SQLAlchemy(app)
 
 if __name__ == '__main__':  # to avoid import loops
-    # from models.user import User
-    from models import User
+    # from models import User
+    import models
 
     @app.route('/')
-    def hello():
-        return "Hello World!"
+    def index():
+        return render_template('index.html')
     
     app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
     #app.run()

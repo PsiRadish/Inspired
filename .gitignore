@@ -1,3 +1,6 @@
+# OS files
+Thumbs.db
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -68,5 +71,12 @@ target/
 pyvenv.cfg
 pip-selfcheck.json
 
+# SASS
+.sass-cache
+
 # API keys
 .env
+
+# semantic-ui stuff I'll use via CDN instead
+/static/js/semantic-ui/*
+/static/fonts/*
