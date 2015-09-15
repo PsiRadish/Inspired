@@ -5,16 +5,19 @@
   <meta charset="utf-8">
   <link rel="shortcut icon" href="{{url_for('static', filename='img/favicon.png')}">
   
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  
-  <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}">
-  <script type="text/javascript" src="{{url_for('static', filename='js/script.js')}"></script>
-  
+  <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}">  
 </head>
 <body>
-{% block content %}
+
+  {% block content %}
     This is where shit would go if you hadn't done something totally wrong.
-{% endblock %}
+  {% endblock %}
+
+  <script src="//code.jquery.com/jquery.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+
+  <script type="text/javascript" src="{{url_for('static', filename='js/script.js')}"></script>
+
 </body>
 </html>
