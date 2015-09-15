@@ -1,12 +1,26 @@
+
+# print("1")
+
 import os
 from flask import Flask
+from flask.ext.sqlalchemy import SQLAlchemy
+
+# print("2")
+
 app = Flask(__name__)
+app.config.from_object(os.environ['ENV_SETTINGS'])
 
+# print("3")
 
-@app.route('/')
-def hello():
-    return "Hello World!"
+db = SQLAlchemy(app)
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # to avoid import loops
+    # from models.user import User
+    from models import User
+
+    @app.route('/')
+    def hello():
+        return "Hello World!"
+    
     app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
     #app.run()
