@@ -1,5 +1,4 @@
 
-print(__name__, '0')
 
 import os
 from flask import Flask, render_template
@@ -11,7 +10,6 @@ app.config.from_object(os.environ['ENV_SETTINGS'])
 
 db = SQLAlchemy(app)
 
-print(__name__, '1')
 
 if __name__ == '__main__':  # to avoid import loops
     # from models import User

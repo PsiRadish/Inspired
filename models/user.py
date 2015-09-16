@@ -1,12 +1,10 @@
 # print("8")
 
-print(__name__, '0')
 
 from app import db
 from sqlalchemy.orm import validates
 from flask.ext.security import UserMixin, RoleMixin
 
-print(__name__, '1')
 
 class Role(db.Model, RoleMixin):  # Roles implemented only because Flask-Security seems to require it
     __tablename__ = 'role'
@@ -15,14 +13,12 @@ class Role(db.Model, RoleMixin):  # Roles implemented only because Flask-Securit
     name            = db.Column(db.String(80), unique=True)
     description     = db.Column(db.String(255))
 
-print(__name__, '2')
 
 # Join table
 roles_users = db.Table('roles_users',
         db.Column('user_id', db.Integer(), db.ForeignKey('user.id')),
         db.Column('role_id', db.Integer(), db.ForeignKey('role.id')))
 
-print(__name__, '3')
 
 class User(db.Model, UserMixin):
     __tablename__ = 'user'
@@ -57,4 +53,3 @@ class User(db.Model, UserMixin):
             "  name: {}".format(self.name),
             "  email: {}".format(self.email))
 
-print(__name__, '4')
