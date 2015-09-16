@@ -1,0 +1,41 @@
+/*******************************
+        Site Overrides
+*******************************/
+#brand
+{
+    font-size: @h4;
+}
+
+nav.ui.inverted.menu 
+{
+    background: @invertedNavBackground;
+}
+
+/*--- Hover ---*/
+nav.ui.link.inverted.menu .item:hover,
+nav.ui.inverted.menu .dropdown.item:hover,
+nav.ui.inverted.menu .link.item:hover,
+nav.ui.inverted.menu a.item:hover 
+{
+    background: @transparentGold;
+}
+
+/*--- Pressed ---*/
+nav.ui.inverted.menu a.item:active,
+nav.ui.inverted.menu .link.item:active,
+nav.ui.inverted.menu a.item:active 
+{
+    background: @transparentGold;
+}
+
+/*--- Active ---*/
+nav.ui.inverted.menu .active.item 
+{
+    background: @strongTransparentGold;
+}
+
+/*--- Active Hover ---*/
+nav.ui.inverted.menu .active.item:hover 
+{
+    background: @strongTransparentGold;
+}

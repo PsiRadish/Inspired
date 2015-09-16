@@ -1,0 +1,6 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+@gutterWidth: 6px;
+@rowDistance: 6px;

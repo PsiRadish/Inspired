@@ -74,6 +74,9 @@ pip-selfcheck.json
 # SASS
 .sass-cache
 
+# gulp
+node_modules
+
 # API keys
 .env
 

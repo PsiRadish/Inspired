@@ -1,0 +1,14 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+@headerFont : Georgia,Constantia,Cambria,Palatino,Palatino Linotype,serif;
+
+@relativeBorderRadius: 0;
+@absoluteBorderRadius: 0;
+
+@defaultBorderRadius:  0;
+
+@invertedNavBackground: #7A1A00;
+@transparentGold:       rgba(255, 255, 128, 0.08);
+@strongTransparentGold: rgba(255, 255, 128, 0.15);

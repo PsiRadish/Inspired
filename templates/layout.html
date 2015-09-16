@@ -6,18 +6,34 @@
   <link rel="shortcut icon" href="{{url_for('static', filename='img/favicon.png')}">
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/semantic.css')}">  
   <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}">  
 </head>
 <body>
 
+<nav class="ui inverted menu">
+  <a id="brand" class="item" href="/">
+    &infin; Inspired
+  </a>
+  <a class="item right" href="/login">
+    Login
+  </a>
+  <a class="item" href="/signup">
+    Signup
+  </a>
+</nav>
+
+<section id="content" class="ui grid container">
   {% block content %}
     This is where shit would go if you hadn't done something totally wrong.
   {% endblock %}
+</section>
 
-  <script src="//code.jquery.com/jquery.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
 
-  <script type="text/javascript" src="{{url_for('static', filename='js/script.js')}"></script>
+<script src="//code.jquery.com/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+
+<script src="{{url_for('static', filename='js/script.js')}"></script>
 
 </body>
 </html>

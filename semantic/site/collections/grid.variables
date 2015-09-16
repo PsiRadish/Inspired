@@ -1,0 +1,9 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+@gutterWidth: 10px;
+@rowSpacing:  10px;
+
+@relaxedGutterWidth:     15px;
+@veryRelaxedGutterWidth: 20px;

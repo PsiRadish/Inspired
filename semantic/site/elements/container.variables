@@ -1,0 +1,9 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+@mobileGutter: 6px;
+
+@gridGutterWidth: 10px;
+@relaxedGridGutterWidth: 15px;
+@veryRelaxedGridGutterWidth: 20px;

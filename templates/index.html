@@ -3,6 +3,13 @@
 {# {% block title %}{{ super() }}{% endblock %} #}
 
 {% block content %}
-  Welcome to &infin;spired! (I'll probably stop calling it that shortly)
+  
+  <h1>Welcome to &infin;spired!</h1>
+  (I'll probably stop calling it that shortly)
+  
+  <div class="centered row">
+    <div class="ten wide column">
+      {% include 'user/_new.html' %}
+    </div>
+  </div>
 {% endblock %}
-

@@ -1,2 +1,2 @@
 @echo OFF
-python -m models.manage %*
+python manage.py %*
