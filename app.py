@@ -80,6 +80,8 @@ if __name__ == '__main__':  # to avoid import loops
     #{
         if request.method == 'POST': # Form data submitted
             try:
+                assert len(request.form['password']) >= 8
+                
                 new_user_data = \
                 {
                     'name': request.form['name'],

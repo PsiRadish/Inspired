@@ -1,12 +1,13 @@
 
-from app import db
-from models.base import Base
+# from app import db
+from models.base import Base, db
 from sqlalchemy.orm import validates
 from flask.ext.login import UserMixin
 
 class User(Base, UserMixin):
     __tablename__ = 'user'
     
+    # ATTRIBUTES
     name            = db.Column(db.String(30), nullable=False, unique=True)
     # gender          = db.Column(db.Enum('female','male','robot','none','fluid','moss'))
     email           = db.Column(db.String, nullable=False, unique=True)
@@ -16,15 +17,18 @@ class User(Base, UserMixin):
     
     about           = db.Column(db.Text, default="")
     
+    # RELATIONSHIPS
+    works = db.relationship("Work", backref="author")
+    
     @validates('email')
     def validate_email(self, attribute, value):
         assert '@' in value
         return value
         
-    @validates('password')
-    def validate_password(self, attribute, value):
-        assert len(value) >= 8
-        return value
+    # @validates('password')
+    # def validate_password(self, attribute, value):
+    #     assert len(value) >= 8
+    #     return value
     
     # def __init__(self):
     #     stuff
