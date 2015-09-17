@@ -3,8 +3,8 @@ from requests_oauthlib import OAuth1Session
 import pytumblr
 
 # Credentials from the application page
-client_key = os.environ['CLIENT_KEY']
-client_secret = os.environ['SECRET_KEY']
+tumblr_client = os.environ['TUMBLR_CLIENT']
+tumblr_secret = os.environ['TUMBLR_SECRET']
 
 # OAuth URLs given on the application page
 request_token_url       = 'http://www.tumblr.com/oauth/request_token'
@@ -12,7 +12,7 @@ authorization_base_url  = 'http://www.tumblr.com/oauth/authorize'
 access_token_url        = 'http://www.tumblr.com/oauth/access_token'
 
 # Fetch a request token
-tumblr_oauth = OAuth1Session(client_key, client_secret=client_secret, callback_uri='http://www.tumblr.com/dashboard')
+tumblr_oauth = OAuth1Session(tumblr_client, client_secret=tumblr_secret, callback_uri='http://www.tumblr.com/dashboard')
 
 tumblr_oauth.fetch_request_token(request_token_url)
 
@@ -36,8 +36,8 @@ print('access_secret =', access_secret)
 # print(tumblr_oauth.get('http://api.tumblr.com/v2/user/dashboard'))
 
 user = pytumblr.TumblrRestClient(
-    client_key,
-    client_secret,
+    tumblr_client,
+    tumblr_secret,
     access_key,
     access_secret
 )

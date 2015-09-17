@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}New Work {{ super() }}{% endblock %}
+
+{% block content %}
+
+<form action="/signup" method="post" class="ui form ten wide column">
+  <legend><h3>Add New Work</h3></legend>
+  <div class="field">
+    <label>Title:</label>
+    <input name="title" type="text" placeholder="You can judge everything by a story's name">
+  </div>
+  <div class="field">
+    <label>Fandom(s):</label>
+    <input name="fandoms" type="text" placeholder="Fandom, Fandom, Fandom">
+  </div>
+  <div class="field">
+    <label>Content:</label>
+    <input name="content_tags" type="text" placeholder="Tentacles, Tentacles, Tentacles">
+  </div>
+  <div class="field">
+    <label>Characters:</label>
+    <input name="characters" type="text" placeholder="Character, Character, Character">
+  </div>
+  <div class="field">
+    <label>Relationship(s):</label>
+    <input name="ships" type="text" placeholder="Ship, Ship, Ship">
+  </div>
+  <button class="ui button" type="submit">Submit</button>
+</form>
+
+{% endblock %}

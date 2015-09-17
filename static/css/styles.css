@@ -60,3 +60,69 @@ legend
 {
     content: ",";
 }
+
+#tumblr-stuff
+{
+    position: relative;
+    color: inherit;
+}
+#tumblr-stuff header.header
+{
+    /*display: inline-block;*/
+    position: absolute;
+    top: 9px;
+    right: 12px;
+    margin-top: 0 !important;
+}
+#tumblr-stuff label
+{
+    margin-top: 30px;
+    font-weight: bold;
+    display: block;
+}
+#tumblr-stuff label + ul
+{
+    margin-top: 0;
+}
+#tumblr-stuff .attached.label
+{
+    font-size: 1rem;
+}
+#tumblr-stuff ul
+{
+    padding-left: 20px;
+}
+#tumblr-stuff li > a:not(.ui)
+{
+    color: #4183C4;
+}
+
+/* Animated underline */
+*:not(.meta):not(.menu) > a:not(.button)
+{
+    position: relative;
+}
+*:not(.meta):not(.menu) > a:not(.button)::before
+{
+    position: absolute;
+    top: auto;
+    bottom: 1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #4183C4;
+    content: '';
+    -webkit-transition: all 0.2s;
+            transition: all 0.2s;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+}
+
+*:not(.meta):not(.menu) > a:not(.button):hover::before
+{
+    background-color: #2C76BF;
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+}

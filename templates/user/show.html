@@ -8,10 +8,10 @@
   <div class="left aligned six wide column ui segment card">
     <div class="content">
       {# <img class="right floated mini ui image" src="{{ url_for('static', filename='img/square-image.png') }}"> #}
-      <img class="left floated tiny ui image" src="{{ url_for('static', filename='img/square-image.png') }}">
-      <header class="header">
+      <h1>
         {{ user.name }}
-      </header>
+      </h1>
+      <img class="ui image" src="{{ url_for('static', filename='img/square-image.png') }}">
       <div class="meta">
         Number of stories written and shit.
       </div>
@@ -19,37 +19,48 @@
         {{ user.about }}
       </div>
     </div>
-      
-    {% if tumblr_info %}
-    <div class="extra content">
-      <div class="ui top left attached label">
-        <i class="fa fa-tumblr-square"></i> Tumblr
+    
+    {% if tumblr_info.user %}
+    {# Showing Tumblr stuff #}
+      <div id="tumblr-stuff" class="extra content">
+        <div class="ui top left attached blue label">
+          <i class="fa fa-tumblr"></i> Tumblr
+        </div>
+        <header class="header">
+           {{ tumblr_info.user.name }}
+        </header>
+        <label>Blog(s)</label>
+        <ul class="list">
+          {% for blog in tumblr_info.user.blogs %}
+            <li><a href="{{ blog.url }}">{{ blog.title }}</a></li>
+          {% endfor %}
+        </ul>
       </div>
-      <header class="header">
-         {{ tumblr_info.name }}
-      </header>
-      <ul class="list"><b>Blog(s)</b>
-        {% for blog in tumblr_info.blogs %}
-          <li><a href="{{ blog.url }}">{{ blog.title }}</a></li>
-        {% endfor %}
-      </ul>
-    </div>
     {% elif user == current_user %}
-    <div class="ui bottom attached button">
-      <i class="fa fa-tumblr-square"></i> Add Tumblr Account
-    </div>
+      {% if tumblr_info.meta and tumblr_info.meta.msg and tumblr_info.meta.msg == "Not Authorized" %}
+      {# Showing Tumblr error message. #}
+        <div class="ui bottom attached error message">
+          <i class="fa fa-tumblr"></i>
+          Unable to access your Tumblr account.
+        </div>
+      {% else %}
+      {# Showing button to initiate Tumblr oAuth #}
+        <a class="ui bottom attached button" href="{{ tumblr_info.oauth_url }}">
+          <i class="fa fa-tumblr-square"></i> Add Tumblr Account
+        </a>
+      {% endif %}
     {% endif %}
   </div>
   
   <div class="left aligned ten wide column ui segment">
-    <h1>Works by {{ user.name }}</h1>
+    <h2>Works by {{ user.name }}</h2>
     <div class="ui divided items">
       <article class="item work-item">
         <div class="ui tiny image">
           <img src="{{ url_for('static', filename='img/square-image.png') }}" alt="thumbnail">
         </div>
         <div class="content">
-          <header class="header">Work Title</header>
+          <header class="header"><a class="work-link">Work Title</a></header>
           <div class="meta">
             <label class="ui red ribbon label">Characters</label>
             <a>Elsa</a> <a>Anna</a> <a>Kristoff</a>
@@ -72,7 +83,7 @@
           <img src="{{ url_for('static', filename='img/square-image.png') }}" alt="thumbnail">
         </div>
         <div class="content">
-          <header class="header">Work Title</header>
+          <header class="header"><a class="work-link">Work Title</a></header>
           <div class="meta">
             <label class="ui red ribbon label">Characters</label>
             <a>Elsa</a> <a>Anna</a> <a>Kristoff</a>

@@ -1,7 +1,7 @@
 
 # from app import db
 from models.base import Base, db
-from sqlalchemy.orm import validates
+from sqlalchemy.orm import reconstructor, validates
 from flask.ext.login import UserMixin
 
 class User(Base, UserMixin):
@@ -20,19 +20,21 @@ class User(Base, UserMixin):
     # RELATIONSHIPS
     works = db.relationship("Work", backref="author")
     
+    # INITIALIZATION
+    @reconstructor
+    def init_on_load(self):
+        self.tumblr_oauth = None
+    
+    # VALIDATION
     @validates('email')
     def validate_email(self, attribute, value):
         assert '@' in value
         return value
-        
+    
     # @validates('password')
     # def validate_password(self, attribute, value):
     #     assert len(value) >= 8
     #     return value
-    
-    # def __init__(self):
-    #     stuff
-    # print("10")
     
     def __repr__(self):
         return '\n'.join([
