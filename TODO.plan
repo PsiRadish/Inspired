@@ -5,8 +5,11 @@ X determine feasability of Flask back-end
   X python Tumblr plugin?
     https://github.com/dianakhuang/pytumblr/tree/diana/python-3-support
 
-_ Flask auth
-_ 
+X Flask auth
+_ add Tumblr username display to user dashboard
+_ implement adding Tumblr oauth to user
+_ Design work model
+_ Implement work model
 X Flask oAuth
 
 

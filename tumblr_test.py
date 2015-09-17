@@ -1,6 +1,7 @@
 import os
 # from requests_oauthlib import OAuth1Session
 import pytumblr
+import json
 
 # Credentials from the application page
 client_key    = os.environ['CLIENT_KEY']
@@ -14,3 +15,5 @@ user = pytumblr.TumblrRestClient(
     access_key,
     access_secret
 )
+
+print(json.dumps(user.info(), sort_keys=True, indent=4, separators=(',', ': ')))

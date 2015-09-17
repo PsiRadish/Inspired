@@ -3,7 +3,9 @@
 *******************************/
 #brand
 {
-    font-size: @h4;
+    font-size: @h2;
+    font-family: @headerFont;
+    padding: 13px 16px;
 }
 
 nav.ui.inverted.menu 

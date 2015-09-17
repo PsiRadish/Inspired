@@ -1,5 +1,11 @@
-<form class="ui form">
-  <legend>Sign Up</legend>
+{% extends "layout.html" %}
+
+{% block title %}Sign Up {{ super() }}{% endblock %}
+
+{% block content %}
+
+<form action="/signup" method="post" class="ui form ten wide column">
+  <legend><h3>Sign Up</h3></legend>
   <div class="field">
     <label>E-mail:</label>
     <input name="email" type="email" placeholder="@">
@@ -18,3 +24,5 @@
   </div>
   <button class="ui button" type="submit">Submit</button>
 </form>
+
+{% endblock %}

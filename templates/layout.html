@@ -3,11 +3,11 @@
 <head>
   <title>{% block title %}[Inspired]{% endblock %}</title>
   <meta charset="utf-8">
-  <link rel="shortcut icon" href="{{url_for('static', filename='img/favicon.png')}">
+  <link rel="shortcut icon" href="{{url_for('static', filename='img/favicon.png')}}">
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="{{url_for('static', filename='css/semantic.css')}">  
-  <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}">  
+  <link rel="stylesheet" href="{{url_for('static', filename='css/semantic.css')}}">  
+  <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">  
 </head>
 <body>
 
@@ -15,25 +15,84 @@
   <a id="brand" class="item" href="/">
     &infin; Inspired
   </a>
-  <a class="item right" href="/login">
-    Login
-  </a>
-  <a class="item" href="/signup">
-    Signup
-  </a>
+  
+  <span id="brand-tag-line" class="item">
+    Sweet tag-line here.
+  </span>
+  
+  {% if not current_user.is_authenticated %}
+    <a class="item right" href="/login">
+      Login
+    </a>
+    <a class="item" href="/signup">
+      Signup
+    </a>
+  {% else %}
+    {% with login_success = get_flashed_messages(category_filter=["login success"]) %}
+    <a id="logged-in-name" class="item right {% if login_success %}login-success{% endif %}" href="/user/dash">
+      <b>{{ current_user.name }}</b>
+    </a>
+    <a class="item" href="/logout">
+      Logout
+    </a>
+    {% endwith %}
+  {% endif %}
 </nav>
 
-<section id="content" class="ui grid container">
+{% with errors = get_flashed_messages(category_filter=["error"]) %}
+{% with successes = get_flashed_messages(category_filter=["success"]) %}
+{% if errors or successes %}
+  <section id="flash-messages" class="ui centered grid container">
+    {# ERROR FLASH MESSAGES #}
+    {% if errors %}
+      <div class="ten wide column">
+        <div class="ui message error">
+          <i class="close icon"></i>
+          <header class="header">
+            Error
+          </header>
+          <ul class="list">
+            {%- for msg in errors %}
+            <li>{{ msg }}</li>
+            {% endfor -%}        
+          </ul>
+        </div>
+      </div>
+    {% endif %}
+    
+    {# SUCCESS FLASH MESSAGES #}
+    {% if successes %}
+    <div class="ten wide column">
+      <div class="ui message success">
+        <i class="close icon"></i>
+        <header class="header">
+          Success
+        </header>
+        <ul class="list">
+          {%- for msg in successes %}
+          <li>{{ msg }}</li>
+          {% endfor -%}        
+        </ul>
+      </div>
+    </div>
+    {% endif %}
+  </section>
+{% endif %}
+{% endwith %}
+{% endwith %}
+
+<section id="content" class="ui centered grid container">
+  
   {% block content %}
     This is where shit would go if you hadn't done something totally wrong.
   {% endblock %}
-</section>
 
+</section>
 
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
 
-<script src="{{url_for('static', filename='js/script.js')}"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 </body>
 </html>

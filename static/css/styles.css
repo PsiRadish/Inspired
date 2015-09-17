@@ -1,0 +1,62 @@
+
+/*#flash-messages
+{
+    margin-left: auto;
+    margin-right: auto;
+}*/
+
+p
+{
+    width: 100%;
+}
+
+#brand-tag-line::before
+{
+    background: none;
+}
+
+legend
+{
+    border-bottom: 1px solid #AAA;
+    margin-bottom: 12px;
+}
+
+/*.ui.avatar.image,
+.ui.avatar.image img,
+.ui.avatar.images img,
+.ui.avatar.image svg,
+.ui.avatar.images svg,
+.ui.avatar.images .image
+{
+    margin-right: 0.25em;
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    border-radius: 0;
+}*/
+
+.work-item .ui.ribbon.label
+{
+    left: calc(-0.5rem - 0.6em);
+}
+.work-item .meta .ui.ribbon.label
+{
+    width: 124px;
+}
+
+.ui.items > .item.work-item .meta .label
+{
+    margin-right: -6px;
+}
+.ui.items > .item.work-item .meta *:not(.label)
+{
+    border-bottom: 1px dotted #444;
+}
+.ui.items > .item.work-item .meta *:not(.label):not(:last-child)
+{
+    margin-right: 6px;
+}
+.ui.items > .item.work-item .meta *:not(.label):not(:last-child)::after
+{
+    content: ",";
+}

@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title %}Your Dashboard {{ super() }}{% endblock %}
+
+{% block content %}
+  
+<div class="ten wide column segment">
+<h1>{{ current_user.name }}</h1>
+
+
+{% endblock %}

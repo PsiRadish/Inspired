@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+
+{% block title %}Your Dashboard {{ super() }}{% endblock %}
+
+{% block content %}
+
+<article class="ui horizontal segments">
+  <div class="left aligned six wide column ui segment card">
+    <div class="content">
+      {# <img class="right floated mini ui image" src="{{ url_for('static', filename='img/square-image.png') }}"> #}
+      <img class="left floated tiny ui image" src="{{ url_for('static', filename='img/square-image.png') }}">
+      <header class="header">
+        {{ user.name }}
+      </header>
+      <div class="meta">
+        Number of stories written and shit.
+      </div>
+      <div class="description">
+        {{ user.about }}
+      </div>
+    </div>
+      
+    {% if tumblr_info %}
+    <div class="extra content">
+      <div class="ui top left attached label">
+        <i class="fa fa-tumblr-square"></i> Tumblr
+      </div>
+      <header class="header">
+         {{ tumblr_info.name }}
+      </header>
+      <ul class="list"><b>Blog(s)</b>
+        {% for blog in tumblr_info.blogs %}
+          <li><a href="{{ blog.url }}">{{ blog.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% elif user == current_user %}
+    <div class="ui bottom attached button">
+      <i class="fa fa-tumblr-square"></i> Add Tumblr Account
+    </div>
+    {% endif %}
+  </div>
+  
+  <div class="left aligned ten wide column ui segment">
+    <h1>Works by {{ user.name }}</h1>
+    <div class="ui divided items">
+      <article class="item work-item">
+        <div class="ui tiny image">
+          <img src="{{ url_for('static', filename='img/square-image.png') }}" alt="thumbnail">
+        </div>
+        <div class="content">
+          <header class="header">Work Title</header>
+          <div class="meta">
+            <label class="ui red ribbon label">Characters</label>
+            <a>Elsa</a> <a>Anna</a> <a>Kristoff</a>
+          </div>
+          <div class="meta">
+            <label class="ui red ribbon label">Relationship(s)</label>
+            <a>Elsa x Anna</a>
+            <a>Anna x Kristoff (bromance)</a>
+          </div>
+          <div class="description">
+            Summary summary summary summary summary summary summary summary summary summary summary summary summary.
+          </div>
+          <div class="extra">
+            Word Count | Chapters | Etc.
+          </div>
+        </div>
+      </article>
+      <article class="item work-item">
+        <div class="ui tiny image">
+          <img src="{{ url_for('static', filename='img/square-image.png') }}" alt="thumbnail">
+        </div>
+        <div class="content">
+          <header class="header">Work Title</header>
+          <div class="meta">
+            <label class="ui red ribbon label">Characters</label>
+            <a>Elsa</a> <a>Anna</a> <a>Kristoff</a>
+          </div>
+          <div class="meta">
+            <label class="ui red ribbon label">Relationship(s)</label>
+            <a>Elsa x Anna</a>
+            <a>Anna x Kristoff (bromance)</a>
+          </div>
+          <div class="description">
+            Summary summary summary summary summary summary summary summary summary summary summary summary summary.
+          </div>
+          <div class="extra">
+            Word Count | Chapters | Etc.
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</article>
+
+{% endblock %}

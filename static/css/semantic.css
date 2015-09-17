@@ -2119,7 +2119,9 @@ input::selection {
         Site Overrides
 *******************************/
 #brand {
-  font-size: 1.071rem;
+  font-size: 1.714rem;
+  font-family: Georgia, Constantia, Cambria, Palatino, Palatino Linotype, serif;
+  padding: 13px 16px;
 }
 nav.ui.inverted.menu {
   background: #7a1a00;

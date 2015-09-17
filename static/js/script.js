@@ -37,5 +37,40 @@ $(function()
     //     }
     // })
     // ;
-
+    
+    // Make dismissable messages dismissable
+    $('.message .close')
+     .on('click', function() 
+    {
+        $(this).closest('.message')
+         .transition('fade')
+    });
+    
+    // Pop up message on user name after successful login
+    $('#logged-in-name.login-success')
+     .popup(
+    {
+        on: 'manual',
+        position: 'bottom left',
+        context: '#logged-in-name',
+        content: 'You are now logged in.',
+        onCreate: function(module)
+        {
+            console.log('this', this);
+            console.log('module', module);
+            $(this).popup('show');
+        },
+        onVisible: function(module)
+        {
+            window.setTimeout(function()
+            {
+                $(this).popup('hide');
+            }, 2000);
+        },
+        onHidden: function(module)
+        {
+            $(this).popup('destroy');
+            $(module).removeClass("login-success");
+        }
+    });
 });
