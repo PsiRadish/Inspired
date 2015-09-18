@@ -9,7 +9,7 @@
     <div class="content">
       {# <img class="right floated mini ui image" src="{{ url_for('static', filename='img/square-image.png') }}"> #}
       <h1>
-        {{ user.name }}
+        {{ user.name|e }}
       </h1>
       <img class="ui image" src="{{ url_for('static', filename='img/square-image.png') }}">
       <div class="meta">
@@ -18,17 +18,19 @@
       <div class="description">
         {{ user.about }}
       </div>
-    </div>
     
     {% if tumblr_info.user %}
     {# Showing Tumblr stuff #}
-      <div id="tumblr-stuff" class="extra content">
-        <div class="ui top left attached blue label">
+      <div id="tumblr-stuff"> {# class="extra content"> #}
+        <h5 class="ui horizontal divider header">
+          <i class="fa fa-tumblr-square"></i> Tumblr
+        </h5>
+        {# <div class="ui top left attached blue label">
           <i class="fa fa-tumblr"></i> Tumblr
-        </div>
-        <header class="header">
+        </div> #}
+        <h4 class="header tumblr-name">
            {{ tumblr_info.user.name }}
-        </header>
+        </h4>
         <label>Blog(s)</label>
         <ul class="list">
           {% for blog in tumblr_info.user.blogs %}
@@ -50,12 +52,13 @@
         </a>
       {% endif %}
     {% endif %}
+    </div>
   </div>
   
   
   <div id="user-work-list" class="left aligned column ui segment">
-    <h2>Works by {{ user.name }}</h2>
-    <a class="new-work-button right floated ui teal button" href="{{ url_for('new_work') }}"><i class="fa fa-plus"></i> New Work</a>
+    <h2>Works by {{ user.name|e }}</h2>
+    <a class="new-work-button right floated ui red button" href="{{ url_for('new_work') }}"><i class="fa fa-plus"></i> New Work</a>
     {% with works = user.works %}
     {% include 'work/_work_list.html' %}
     {% endwith %}

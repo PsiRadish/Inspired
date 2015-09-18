@@ -12,3 +12,7 @@
 @invertedNavBackground: #7A1A00;
 @transparentGold:       rgba(255, 255, 128, 0.08);
 @strongTransparentGold: rgba(255, 255, 128, 0.15);
+
+@h2 : 1.75rem;
+@h3 : 1.50rem;
+@h4 : 1.25rem;

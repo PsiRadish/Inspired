@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}{{ work.title }} &sup; {{ chapter.numeral }} {{ super() }}{% endblock %}
+{% block title %}{{ work.title|e }} &sup; {{ chapter.numeral|e }} {{ super() }}{% endblock %}
 
 {% block content %}
 
@@ -10,7 +10,7 @@
   </div>
   
   <div class="left aligned sixteen wide column ui segment">
-    <h3><span class="ch-numeral">{{ chapter.numeral }}</span> <span class="ch-title">{{ chapter.title }}</span></h3>
+    <h3><span class="ch-numeral">{{ chapter.numeral|e }}</span> <span class="ch-title">{{ chapter.title|e }}</span></h3>
     <div class="chapter-body">
       {{ chapter.body }}
     </div>

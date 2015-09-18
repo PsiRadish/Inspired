@@ -2,32 +2,32 @@
           <img src="{{ url_for('static', filename='img/square-image.png') }}" alt="thumbnail">
         </div>
         <div class="content">
-          <header class="header"><a class="work-link" href="#">{{ work.title }}</a></header> <span class="attribution">by {{ work.author.name }}</span>
+          <header class="header"><a class="work-link" href="#">{{ work.title|e }}</a></header> <span class="attribution">by {{ work.author.name|e }}</span>
           {% if current_user == work.author %}
-            <a class="right floated ui teal button" href="/work/{{ work.id }}/add"><i class="fa fa-plus"></i> Add Chapter</a>
+            <a class="right floated ui red button" href="/work/{{ work.id }}/add"><i class="fa fa-plus"></i> Add Chapter</a>
           {% endif %}
           <div class="meta">
             <label class="ui red ribbon label">Fandom(s)</label>
             {% for fandom in work.fandom_tags %}
-              <a>{{ fandom }}</a>
+              <a>{{ fandom|e }}</a>
             {% endfor %}
           </div>
           <div class="meta">
             <label class="ui red ribbon label">Content</label>
             {% for content in work.content_tags %}
-              <a>{{ content }}</a>
+              <a>{{ content|e }}</a>
             {% endfor %}
           </div>
           <div class="meta">
             <label class="ui red ribbon label">Characters</label>
             {% for char in work.char_tags %}
-              <a>{{ char }}</a>
+              <a>{{ char|e }}</a>
             {% endfor %}
           </div>
           <div class="meta">
             <label class="ui red ribbon label">Relationship(s)</label>
             {% for ship in work.ship_tags %}
-              <a>{{ ship }}</a>
+              <a>{{ ship|e }}</a>
             {% endfor %}
           </div>
           <p class="description">

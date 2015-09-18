@@ -94,22 +94,26 @@ legend
     content: ",";
 }
 
-#tumblr-stuff
+
+/*#tumblr-stuff
 {
     position: relative;
     color: inherit;
-}
-#tumblr-stuff header.header
+}*/
+#tumblr-stuff h5.divider.header
 {
-    /*display: inline-block;*/
-    position: absolute;
-    top: 9px;
-    right: 12px;
-    margin-top: 0 !important;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+#tumblr-stuff h4.header.tumblr-name
+{
+    margin-top: 8px;
+    text-align: center;
+    margin-bottom: 8px;
 }
 #tumblr-stuff label
 {
-    margin-top: 30px;
+    /*margin-top: 30px;*/
     font-weight: bold;
     display: block;
 }
@@ -147,4 +151,26 @@ legend
 #user-work-list h2
 {
     display: inline-block;
+}
+
+#tumblr-import-pane
+{
+    transition: 0.25s all;
+    height: 820px;
+}
+#tumblr-import-pane.collapsed
+{
+    height: 0;
+}
+
+.import-list-container
+{
+    overflow-y: auto;
+    height: 800px;
+}
+
+.import-list
+{
+    list-style: none;
+    padding-left: 20px;
 }

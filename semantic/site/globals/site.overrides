@@ -8,6 +8,15 @@
     padding: 13px 16px;
 }
 
+#tumblr-stuff h5.divider.header
+{
+    font-family: @pageFont;
+    // font-size: @fontSize;
+    font-weight: bold;
+    // margin-top: 14px;
+    // margin-bottom: 14px;
+}
+
 nav.ui.inverted.menu 
 {
     background: @invertedNavBackground;

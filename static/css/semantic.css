@@ -2031,13 +2031,13 @@ h1 {
   font-size: 2rem;
 }
 h2 {
-  font-size: 1.714rem;
+  font-size: 1.75rem;
 }
 h3 {
-  font-size: 1.28rem;
+  font-size: 1.5rem;
 }
 h4 {
-  font-size: 1.071rem;
+  font-size: 1.25rem;
 }
 h5 {
   font-size: 1rem;
@@ -2119,9 +2119,13 @@ input::selection {
         Site Overrides
 *******************************/
 #brand {
-  font-size: 1.714rem;
+  font-size: 1.75rem;
   font-family: Georgia, Constantia, Cambria, Palatino, Palatino Linotype, serif;
   padding: 13px 16px;
+}
+#tumblr-stuff h5.divider.header {
+  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-weight: bold;
 }
 nav.ui.inverted.menu {
   background: #7a1a00;
@@ -9935,13 +9939,13 @@ h1.ui.header {
   font-size: 2rem;
 }
 h2.ui.header {
-  font-size: 1.714rem;
+  font-size: 1.75rem;
 }
 h3.ui.header {
-  font-size: 1.28rem;
+  font-size: 1.5rem;
 }
 h4.ui.header {
-  font-size: 1.071rem;
+  font-size: 1.25rem;
 }
 h5.ui.header {
   font-size: 1rem;
@@ -9970,13 +9974,13 @@ h5.ui.header .sub.header {
   font-size: 2em;
 }
 .ui.large.header {
-  font-size: 1.714em;
+  font-size: 1.75em;
 }
 .ui.medium.header {
-  font-size: 1.28em;
+  font-size: 1.5em;
 }
 .ui.small.header {
-  font-size: 1.071em;
+  font-size: 1.25em;
 }
 .ui.tiny.header {
   font-size: 1em;
@@ -10434,7 +10438,7 @@ a.ui.inverted.grey.header:hover {
         Sizing
 --------------------*/
 .ui.header:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
-  font-size: 1.28em;
+  font-size: 1.5em;
 }
 /*******************************
          Theme Overrides

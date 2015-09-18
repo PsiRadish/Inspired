@@ -1,37 +1,36 @@
 {% extends "layout.html" %}
 
-{% block title %}New Work {{ super() }}{% endblock %}
+{% block title %}Add Chapter {{ super() }}{% endblock %}
 
 {% block content %}
 
-<form action="/work/new" method="post" class="ui form ten wide column">
-  <legend><h3>Add New Work</h3></legend>
+<form id="add-chapter-form" action="/work/new" method="post" class="ui form ten wide column">
+  <legend><h3>Add Chapter to {{ work.title }}</h3></legend>
+  
+  {% if tumblr %}
+    <button id="tumblr-import-bttn" class="ui violet button"><i class="fa fa-tumblr"></i> Import from Tumblr</button>
+    <div id="tumblr-import-pane" class="collapsed ui segment">
+      <div class="ui segment import-list-container">
+        <ul id="import-list">
+          {# jQuery shalt handle the rest #}
+        </ul>
+      </div>
+    </div>
+  {% endif %}
+  
   <div class="field">
     <label>Title:</label>
-    <input name="title" type="text" placeholder="You can judge everything by a story's name">
-  </div>
-  <div class="field">
-    <label>Fandom(s):</label>
-    <input name="fandom_tags" type="text" placeholder="Fandom, Fandom, Fandom">
-  </div>
-  <div class="field">
-    <label>Content:</label>
-    <input name="content_tags" type="text" placeholder="Tentacles, Tentacles, Tentacles">
-  </div>
-  <div class="field">
-    <label>Characters:</label>
-    <input name="char_tags" type="text" placeholder="Character, Character, Character">
+    <input name="title" id="title-box" type="text" placeholder="You can judge everything by a story's name">
   </div>
   <div class="field">
     <label>Numeral:</label>
-    <input name="numeral" type="text" placeholder="Chapter numbers in order? Totally optional."
-           value="Chapter {{ work }}">
+    <input name="numeral" type="text" placeholder="Chapter numbers in order? Totally optional." value="{{ default_numeral }}">
   </div>
   <div class="field">
     <label>Body:</label>
-    <textarea name="body" placeholder="One day, on the way to the crematorium..."></textarea>
+    <textarea name="body" id="body-box" placeholder="One day, on the way to the crematorium..."></textarea>
   </div>
-  <button class="ui button" type="submit">Submit</button>
+  <button class="ui blue button" type="submit">Submit</button>
 </form>
 
 {% endblock %}

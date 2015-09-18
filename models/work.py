@@ -40,9 +40,10 @@ class Chapter(Base):
     
     #RELATIONSHIPS
     work_id         = db.Column(db.Integer, db.ForeignKey('work.id'))
+                    # best as I can tell, this should make the 'order' attribute auto-increment per chapter per work
     work            = db.relationship('Work', backref=backref('chapters', order_by='Chapter.order',
-                        collection_class=ordering_list('order'), cascade='all, delete-orphan', # Chapters are owned by their Work
-                        passive_deletes=True))
+                        collection_class=ordering_list('order'),
+                        cascade='all, delete-orphan', passive_deletes=True)) # delete chapters when work is deleted
     
     #VALIDATION
     @validates('body')

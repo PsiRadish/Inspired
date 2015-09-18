@@ -46,7 +46,98 @@ $(function()
          .transition('fade')
     });
     
-    // Pop up message on user name after successful login
+    if ($('#tumblr-import-bttn').length()) // on add chapter page
+    {
+        $.getJSON("/api/tumblr-import.json", function(data) // get tumblr data
+        {
+            console.log(data);
+            
+            // show import pane when button clicked
+            $('#tumblr-import-bttn').on('click', function(e)
+            {
+                $('#tumblr-import-pane').toggleClass("collapsed");
+            });
+            
+            showBlogs(null);
+            function showBlogs(e)
+            {
+                if (e)
+                {
+                    e.preventDefault();
+                }
+                
+                $('#import-list').empty();
+                
+                Object.keys(data).each(function(blogName)
+                {
+                    var link = $('<a><i class="fa fa-folder-o"></i> ' + blogName + '</a>');
+                    link.data('blog-name', blogName);
+                    
+                    var listItem = $('<li>').append(link);
+                    $('#import-list').append(listItem);
+                    
+                    link.on('click', showBlogPosts);
+                });
+            }
+            
+            function showBlogPosts(e)
+            {
+                e.preventDefault();
+                
+                $('#import-list').empty();
+                
+                var blogName = $(this).data('blog-name');
+                
+                var posts = data[blogName];
+                
+                // link to go back up to blog list
+                var backLink = $('<a class="fa-stack fa">' +
+                                 '<i class="fa fa-folder-open-o fa-stack-1x"></i>' +
+                                 '<i class="fa fa-long-arrow-up fa-stack-1x"></i>' +
+                                 blogName + '</a>');
+                
+                var listItem = $('<li>').append(backLink);
+                $('#import-list').append(listItem);
+                
+                backLink.on('click', showBlogs);
+                
+                // make link for each post
+                posts.forEach(function(post, index)
+                {
+                    var link = $('<a><i class="fa fa-file-text-o"></i> ' + post.title + '</a>');
+                    post.tags.forEach(function(tag)
+                    {
+                        link.append('<label class="ui red mini label">' + tag + '</label>');
+                    });
+                    
+                    link.data('blog-name', blogName);
+                    link.data('post-index', index);
+                    
+                    listItem = $('<li>').append(link);
+                    
+                    $('#import-list').append(listItem);
+                    
+                    link.on('click', importFromPost);
+                });
+            }
+            
+            function importFromPost(e)
+            {
+                e.preventDefault();
+                
+                var blogName = $(this).data('blog-name');
+                var postIndex = $(this).data('post-index');
+                
+                var post = data[blogName][postIndex];
+                
+                $('#title-box').val(post.title);
+                $('#body-box').val(post.body);
+            }
+        });
+    }
+    
+    // Semantic UI pop up message on user name after successful login
+    // (Doesn't work yet)
     $('#logged-in-name.login-success')
      .popup(
     {

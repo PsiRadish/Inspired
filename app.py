@@ -1,7 +1,7 @@
 
 import os
 import re
-from flask import Flask, render_template, redirect, url_for, request, flash, session
+from flask import Flask, Response, render_template, redirect, url_for, request, flash, session
 from flask.ext.login import LoginManager, login_required, current_user, login_user, logout_user
 from flask.ext.bcrypt import Bcrypt
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -9,6 +9,9 @@ from sqlalchemy.orm import joinedload
 
 from requests_oauthlib import OAuth1Session
 import pytumblr
+
+from sanitize import sanitize
+
 
 app = Flask(__name__)
 app.config.from_object(os.environ['ENV_SETTINGS'])
@@ -22,17 +25,27 @@ oauth_sessions = {}
 
 if __name__ == '__main__':  # to avoid import loops
 #{
-    def get_tumblr_info(user):
-    #{
-        global oauth_sessions
-        
+    def create_tumblr_client(user):
         if user.tumblr_key and user.tumblr_secret:
-            tumblr_info = pytumblr.TumblrRestClient(
+            return pytumblr.TumblrRestClient(
                 app.config['TUMBLR_CLIENT'],
                 app.config['TUMBLR_SECRET'],
                 user.tumblr_key,
                 user.tumblr_secret
-            ).info()
+            )
+        return pytumblr.TumblrRestClient(
+                app.config['TUMBLR_CLIENT'],
+                app.config['TUMBLR_SECRET']) # I think this works?
+    
+    def get_tumblr_user_info(user, client=None):
+    #{
+        global oauth_sessions
+        
+        if client == None:
+            client = create_tumblr_client(user)
+        
+        if user.tumblr_key and user.tumblr_secret:
+            tumblr_info = client.info()
             
             if not 'user' in tumblr_info: # ouath failed
                 tumblr_info['user'] = None
@@ -114,7 +127,7 @@ if __name__ == '__main__':  # to avoid import loops
                     'name': request.form['name'],
                     'email': request.form['email'],
                     'password': bcrypt.generate_password_hash(request.form['password']),
-                    'about': request.form.get('about', "")
+                    'about': sanitize(request.form.get('about', ""))
                 }
                 
                 new_user = models.User(**new_user_data)
@@ -154,14 +167,14 @@ if __name__ == '__main__':  # to avoid import loops
         if user == current_user:
             return redirect(url_for('user_dash'))
         
-        tumblr_info = get_tumblr_info(user)
+        tumblr_info = get_tumblr_user_info(user)
         return render_template('user/show.html', user=user, tumblr_info=tumblr_info)
     
     # USER DASHBOARD
     @app.route('/user/dash')
     @login_required
     def user_dash():
-        tumblr_info = get_tumblr_info(current_user)
+        tumblr_info = get_tumblr_user_info(current_user)
         return render_template('user/show.html', user=current_user, tumblr_info=tumblr_info)
     
     # TUMBLR CALLBACK
@@ -208,7 +221,7 @@ if __name__ == '__main__':  # to avoid import loops
                     'content_tags': re.split('\s*,\s*', request.form['content_tags']),
                     'char_tags': re.split('\s*,\s*', request.form['char_tags']),
                     'ship_tags': re.split('\s*,\s*', request.form['ship_tags']),
-                    'summary': request.form['summary']
+                    'summary': sanitize(request.form['summary'])
                 }
                 
                 new_work = models.Work(**new_work_data)
@@ -216,7 +229,9 @@ if __name__ == '__main__':  # to avoid import loops
                 
                 db.session.add(new_work)
                 db.session.commit()
-                return redirect(url_for('index'))
+                
+                flash('New work created.', success)
+                return redirect(url_for('add_chapter'))
             except NameError:
                 flash('There were missing fields in the data you submitted.', 'error')
                 return redirect(url_for('new_work'))
@@ -236,14 +251,64 @@ if __name__ == '__main__':  # to avoid import loops
     
     # ADD CHAPTER
     @app.route('/work/<work_id>/add', methods=['GET','POST'])
-    # @app.route('/work/add', methods=['POST'])
+    @login_required
     def add_chapter(work_id):
         if request.method == 'POST':
-            
+            try:
+                work = models.Work.query.get_or_404(work_id)
+                
+                new_chapter_data = \
+                {
+                    'title': request.form['title'],
+                    'numeral': request.form['numeral'],
+                    'body': sanitize(request.form['body'])
+                }
+                
+                new_chapter = models.Chapter(**new_chapter_data)
+                new_chapter.work = work
+                
+                db.session.add(new_chapter)
+                db.session.commit()
+                
+                flash('Chapter added.', success)
+                return redirect(url_for('index'))
+            except NameError:
+                flash('There were missing fields in the data you submitted.', 'error')
+                return redirect(url_for('new_work'))
+        
         elif request.method == 'GET':
             work = models.Work.query.options(joinedload('chapters')).get_or_404(work_id)
-            return render_template('work/add.html', work=work)
+            default_numeral = "Chapter " + str(len(work.chapters) + 1)
+            
+            tumblr = current_user.tumblr_key and current_user.tumblr_secret # true or false whether to offer Tumblr import
+            
+            return render_template('work/add.html', work=work, default_numeral=default_numeral, tumblr=tumblr)
+        
+    # FRONT-END REQUESTING TUMBLR IMPORT DATA
+    @app.route('/api/tumblr-import.json')
+    @login_required
+    def tumblr_import():
+        tumblr_imports = None
+        
+        if current_user.tumblr_key and current_user.tumblr_secret:
+            client = create_tumblr_client(current_user)
+            user_info = get_tumblr_user_info(current_user, client)
+            
+            # collect/trim just the Tumblr data the front end might need
+            blog_names = [blog.name for blog in user_info.user.blogs]
+            
+            tumblr_imports = {}
+            
+            for name in blog_names:
+                blog_posts = []
+                for post in client.posts(name, type='text').posts:
+                    blog_posts.append({ 'title': post.title, 'tags': post.tags, 'body': post.body })
+                
+                tumblr_imports[name] = blog_posts
+                
+        # return Response(json.dumps(tumblr_imports), mimetype='application/json')
+        return Response(tumblr_imports, mimetype='application/json')
     
-    
+        
     app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
 #}

@@ -12,7 +12,6 @@ class Config(object):
     TUMBLR_ACCESS_TOKEN_URL = 'http://www.tumblr.com/oauth/access_token'
     TUMBLR_CALLBACK_URL = None
     SQLALCHEMY_DATABASE_URI = None
-    #SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or "postgresql://localhost/Inspired"
 
 
 class DevelopmentConfig(Config):

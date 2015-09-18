@@ -19,21 +19,11 @@ class User(Base, UserMixin):
     # RELATIONSHIPS
     works = db.relationship("Work", backref="author")
     
-    # INITIALIZATION
-    # @reconstructor
-    # def init_on_load(self):
-    #     self.tumblr_oauth = None
-    
     # VALIDATION
     @validates('email')
     def validate_email(self, attribute, value):
         assert '@' in value
         return value
-    
-    # @validates('password')
-    # def validate_password(self, attribute, value):
-    #     assert len(value) >= 8
-    #     return value
     
     def __repr__(self):
         return '\n'.join([
