@@ -22,7 +22,8 @@ class DevelopmentConfig(Config):
     
 
 class ProductionConfig(Config):
+    # DEBUG = False
     DEBUG = False
-    TUMBLR_CALLBACK_URL = "https://infinspired.herokuapp.com//user/dash/tumblr"
+    TUMBLR_CALLBACK_URL = "https://infinspired.herokuapp.com/user/dash/tumblr"
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     
