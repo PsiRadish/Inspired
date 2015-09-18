@@ -10,9 +10,22 @@
   </div>
   
   <div class="left aligned sixteen wide column ui segment">
-    <h3><span class="ch-numeral">{{ chapter.numeral|e }}</span> <span class="ch-title">{{ chapter.title|e }}</span></h3>
+    <h3>
+      <span class="ch-numeral">{{ chapter.numeral|e }}</span>
+      <span class="ch-title">{{ chapter.title|e }}</span>
+      {% if chapter_position < chapter_count %}
+          <a id="next_button" class="ui right labeled icon button" href="/work/{{ work.id }}/{{ chapter_position + 1 }}">
+            <i class="right arrow icon"></i> Next
+          </a>
+      {% endif %}
+      {% if chapter_position > 1 %}
+          <a id="prev_button" class="ui left labeled icon button" href="/work/{{ work.id }}/{{ chapter_position - 1 }}">
+            <i class="left arrow icon"></i> Previous
+          </a>
+      {% endif %}
+    </h3>
     <div class="chapter-body">
-      {{ chapter.body }}
+      {{ chapter.body|safe }}
     </div>
   </div>
 </article>

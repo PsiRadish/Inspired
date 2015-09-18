@@ -16,7 +16,7 @@
         Has contributed {{ user.works|length }} works.
       </div>
       <div class="description">
-        {{ user.about }}
+        {{ user.about|safe }}
       </div>
     
     {% if tumblr_info.user %}

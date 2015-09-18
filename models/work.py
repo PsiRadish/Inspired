@@ -21,7 +21,8 @@ class Work(Base):
     
     # RELATIONSHIPS
     author_id       = db.Column(db.Integer, db.ForeignKey('user.id')) # one author per work for now
-    # chapters        = db.relationship("Chapter", order_by="asc(Chapter.order)", backref="work")
+    chapters        = db.relationship("Chapter", order_by="Chapter.position", backref="work",
+                      collection_class=ordering_list('position'))#, cascade='all, delete-orphan', passive_deletes=True)
     
     @validates('title')
     def validate_title(self, attribute, value):
@@ -34,16 +35,16 @@ class Chapter(Base):
     
     #ATTRIBUTES
     title           = db.Column(db.String, nullable=False)
-    order           = db.Column(db.Integer, nullable=False)
+    position        = db.Column(db.Integer)#, nullable=False)
     numeral         = db.Column(db.String, nullable=False)
     body            = db.Column(db.Text, nullable=False)
     
     #RELATIONSHIPS
     work_id         = db.Column(db.Integer, db.ForeignKey('work.id'))
-                    # best as I can tell, this should make the 'order' attribute auto-increment per chapter per work
-    work            = db.relationship('Work', backref=backref('chapters', order_by='Chapter.order',
-                        collection_class=ordering_list('order'),
-                        cascade='all, delete-orphan', passive_deletes=True)) # delete chapters when work is deleted
+                    # best as I can tell, this should make the 'position' attribute auto-increment per chapter per work
+    # work            = db.relationship('Work', backref=backref('chapters', order_by='Chapter.position',
+    #                     collection_class=ordering_list('position'),
+    #                     cascade='all, delete-orphan', passive_deletes=True)) # delete chapters when work is deleted
     
     #VALIDATION
     @validates('body')

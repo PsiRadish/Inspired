@@ -1,3 +1,5 @@
+# coding=utf-8
+
 # modified from http://chase-seibert.github.io/blog/2011/01/28/sanitize-html-with-beautiful-soup.html
 
 from bs4 import BeautifulSoup, Comment
@@ -24,7 +26,7 @@ def sanitize(html):
     
     try:
         soup = BeautifulSoup(html, "lxml")
-    except Error as e:
+    except:
         # special handling?
         print(e)
         raise e
@@ -37,7 +39,8 @@ def sanitize(html):
         # check against whitelist
         elif tag.name.lower() in whitelist_tags:
             # tag is allowed, now filter attributes
-            tag.attrs = {name: value for name, value in tag.attrs if name.lower() in whitelist_attr}
+            tag.attrs = {name: value for name, value in tag.attrs.items() if name.lower() in whitelist_attr}
+            
             # no hrefs starting with "javascript:"
             if ('href' in tag.attrs and re.match('^javascript:', tag.attrs['href'])):
                 tag.attrs.pop('href')
@@ -51,6 +54,7 @@ def sanitize(html):
     for comment in comments:
         comment.extract()
     
-    print(soup)
+    # print(soup)
     
     return str(soup)
+

@@ -45,17 +45,22 @@ $(function()
         $(this).closest('.message')
          .transition('fade')
     });
-    
-    if ($('#tumblr-import-bttn').length()) // on add chapter page
+     
+    if (($('#tumblr-import-bttn')).length) // on add chapter page
     {
+        console.log('guh');
+        
         $.getJSON("/api/tumblr-import.json", function(data) // get tumblr data
         {
-            console.log(data);
+            // console.log(data);
+            $('#tumblr-import-bttn').removeClass("loading");
             
             // show import pane when button clicked
             $('#tumblr-import-bttn').on('click', function(e)
-            {
+            {   e.preventDefault();
+                console.log('Anything?');
                 $('#tumblr-import-pane').toggleClass("collapsed");
+                console.log('panel', $('#tumblr-import-pane'));
             });
             
             showBlogs(null);
@@ -68,14 +73,14 @@ $(function()
                 
                 $('#import-list').empty();
                 
-                Object.keys(data).each(function(blogName)
+                Object.keys(data).forEach(function(blogName)
                 {
-                    var link = $('<a><i class="fa fa-folder-o"></i> ' + blogName + '</a>');
-                    link.data('blog-name', blogName);
+                    var link = $('<a href="#"><i class="fa fa-folder-o"></i> ' + blogName + '</a>');
                     
                     var listItem = $('<li>').append(link);
                     $('#import-list').append(listItem);
                     
+                    link.data('blogName', blogName);
                     link.on('click', showBlogPosts);
                 });
             }
@@ -84,17 +89,18 @@ $(function()
             {
                 e.preventDefault();
                 
-                $('#import-list').empty();
-                
-                var blogName = $(this).data('blog-name');
+                var blogName = $(this).data('blogName');
+                console.log('blogName', blogName);
                 
                 var posts = data[blogName];
                 
+                $('#import-list').empty();
+                
                 // link to go back up to blog list
-                var backLink = $('<a class="fa-stack fa">' +
+                var backLink = $('<a href="#"><span class="fa-stack fa">' +
                                  '<i class="fa fa-folder-open-o fa-stack-1x"></i>' +
                                  '<i class="fa fa-long-arrow-up fa-stack-1x"></i>' +
-                                 blogName + '</a>');
+                                 '</span>' + blogName + '</a>');
                 
                 var listItem = $('<li>').append(backLink);
                 $('#import-list').append(listItem);
@@ -103,20 +109,19 @@ $(function()
                 
                 // make link for each post
                 posts.forEach(function(post, index)
-                {
-                    var link = $('<a><i class="fa fa-file-text-o"></i> ' + post.title + '</a>');
+                {                    
+                    var link = $('<a href="#"><i class="fa fa-file-text-o"></i> ' + post.title + '</a>');
                     post.tags.forEach(function(tag)
                     {
                         link.append('<label class="ui red mini label">' + tag + '</label>');
                     });
                     
-                    link.data('blog-name', blogName);
-                    link.data('post-index', index);
-                    
                     listItem = $('<li>').append(link);
                     
                     $('#import-list').append(listItem);
                     
+                    link.data('blogName', blogName);
+                    link.data('postIndex', index);
                     link.on('click', importFromPost);
                 });
             }
@@ -125,8 +130,8 @@ $(function()
             {
                 e.preventDefault();
                 
-                var blogName = $(this).data('blog-name');
-                var postIndex = $(this).data('post-index');
+                var blogName = $(this).data('blogName');
+                var postIndex = $(this).data('postIndex');
                 
                 var post = data[blogName][postIndex];
                 

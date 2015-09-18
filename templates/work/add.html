@@ -4,12 +4,12 @@
 
 {% block content %}
 
-<form id="add-chapter-form" action="/work/new" method="post" class="ui form ten wide column">
+<form id="add-chapter-form" action="/work/{{ work.id }}/add" method="post" class="ui form ten wide column">
   <legend><h3>Add Chapter to {{ work.title }}</h3></legend>
   
   {% if tumblr %}
-    <button id="tumblr-import-bttn" class="ui violet button"><i class="fa fa-tumblr"></i> Import from Tumblr</button>
-    <div id="tumblr-import-pane" class="collapsed ui segment">
+    <a id="tumblr-import-bttn" class="ui violet loading button"><i class="fa fa-tumblr"></i> Import from Tumblr</a>
+    <div id="tumblr-import-pane" class="collapsed ui">
       <div class="ui segment import-list-container">
         <ul id="import-list">
           {# jQuery shalt handle the rest #}

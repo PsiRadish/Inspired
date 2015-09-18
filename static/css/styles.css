@@ -156,21 +156,32 @@ legend
 #tumblr-import-pane
 {
     transition: 0.25s all;
-    height: 820px;
+    overflow: hidden;
+    height: 420px;
 }
 #tumblr-import-pane.collapsed
 {
-    height: 0;
+    height: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: none !important;
 }
 
 .import-list-container
 {
     overflow-y: auto;
-    height: 800px;
+    height: 400px;
+    padding: 8px !important;
 }
 
-.import-list
+#import-list
 {
     list-style: none;
     padding-left: 20px;
+}
+
+#prev_button, #next_button
+{
+    float: right;
 }

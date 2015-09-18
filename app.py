@@ -1,6 +1,7 @@
 
 import os
 import re
+import json
 from flask import Flask, Response, render_template, redirect, url_for, request, flash, session
 from flask.ext.login import LoginManager, login_required, current_user, login_user, logout_user
 from flask.ext.bcrypt import Bcrypt
@@ -50,7 +51,7 @@ if __name__ == '__main__':  # to avoid import loops
             if not 'user' in tumblr_info: # ouath failed
                 tumblr_info['user'] = None
             elif user != current_user: # filter data to only show public blogs
-                tumblr_info.user.blogs = [blog for blog in tumblr_info.user.blogs if blog.type == 'public']
+                tumblr_info['user']['blogs'] = [blog for blog in tumblr_info['user']['blogs'] if blog['type'] == 'public']
             
             return tumblr_info
         elif user == current_user:
@@ -189,12 +190,6 @@ if __name__ == '__main__':  # to avoid import loops
             tumblr_oauth.parse_authorization_response(request.url)
             access_tokens = tumblr_oauth.fetch_access_token(app.config['TUMBLR_ACCESS_TOKEN_URL'])
             
-            # add_tumblr = \
-            # {
-            #     'tumblr_key': access_tokens['oauth_token'],
-            #     'tumblr_secret': access_tokens['oauth_token_secret']
-            # }
-            # db.session.query().filter(models.User.id == current_user.id).update(add_tumblr)
             current_user.tumblr_key = access_tokens['oauth_token']
             current_user.tumblr_secret = access_tokens['oauth_token_secret']
             db.session.merge(current_user)
@@ -225,12 +220,12 @@ if __name__ == '__main__':  # to avoid import loops
                 }
                 
                 new_work = models.Work(**new_work_data)
-                new_work.author = current_user
+                new_work.author_id = current_user.id
                 
                 db.session.add(new_work)
                 db.session.commit()
                 
-                flash('New work created.', success)
+                flash('New work created.', 'success')
                 return redirect(url_for('add_chapter'))
             except NameError:
                 flash('There were missing fields in the data you submitted.', 'error')
@@ -240,13 +235,15 @@ if __name__ == '__main__':  # to avoid import loops
     #}
     
     # SHOW_WORK
-    @app.route('/work/<work_id>/<chap_order>')
-    def show_work(work_id, chap_order):
+    @app.route('/work/<work_id>/<int:position>')
+    def show_work(work_id, position):
     #{
         work = models.Work.query.options(joinedload('chapters')).get_or_404(work_id)
-        chapter = work.chapters.filter(models.Chapter.order==chap_order).first_or_404()
+        position -= 1
+        # chapter = work.chapters.filter(models.Chapter.position==position).first_or_404()
+        chapter = work.chapters[position]
         
-        return render_template('work/show.html', work=work, chapter=chapter)
+        return render_template('work/show.html', work=work, chapter=chapter, chapter_count=len(work.chapters), chapter_position=chapter.position+1)
     #}
     
     # ADD CHAPTER
@@ -255,7 +252,7 @@ if __name__ == '__main__':  # to avoid import loops
     def add_chapter(work_id):
         if request.method == 'POST':
             try:
-                work = models.Work.query.get_or_404(work_id)
+                work = models.Work.query.options(joinedload('chapters')).get_or_404(work_id)
                 
                 new_chapter_data = \
                 {
@@ -265,16 +262,17 @@ if __name__ == '__main__':  # to avoid import loops
                 }
                 
                 new_chapter = models.Chapter(**new_chapter_data)
-                new_chapter.work = work
-                
+                new_chapter.work_id = work.id
+                new_chapter.position = len(work.chapters)
                 db.session.add(new_chapter)
                 db.session.commit()
                 
-                flash('Chapter added.', success)
-                return redirect(url_for('index'))
-            except NameError:
+                flash('Chapter added.', 'success')
+                return redirect('/work/'+work_id+'/'+str(new_chapter.position+1))
+            except NameError as e:
                 flash('There were missing fields in the data you submitted.', 'error')
-                return redirect(url_for('new_work'))
+                print('!!!!!!!!!!!!!!!!!', e)
+                return redirect('/work/'+work_id+'/add')
         
         elif request.method == 'GET':
             work = models.Work.query.options(joinedload('chapters')).get_or_404(work_id)
@@ -294,20 +292,22 @@ if __name__ == '__main__':  # to avoid import loops
             client = create_tumblr_client(current_user)
             user_info = get_tumblr_user_info(current_user, client)
             
+            # print('user_info', user_info)
             # collect/trim just the Tumblr data the front end might need
-            blog_names = [blog.name for blog in user_info.user.blogs]
+            blog_names = [blog['name'] for blog in user_info['user']['blogs']]
             
             tumblr_imports = {}
             
             for name in blog_names:
                 blog_posts = []
-                for post in client.posts(name, type='text').posts:
-                    blog_posts.append({ 'title': post.title, 'tags': post.tags, 'body': post.body })
+                for post in client.posts(name, type='text')['posts']:
+                    blog_posts.append({ 'title': post['title'], 'tags': post['tags'], 'body': post['body'] })
                 
                 tumblr_imports[name] = blog_posts
-                
-        # return Response(json.dumps(tumblr_imports), mimetype='application/json')
-        return Response(tumblr_imports, mimetype='application/json')
+        
+        # print(json.dumps(tumblr_imports))
+        return Response(json.dumps(tumblr_imports), mimetype='application/json')
+        # return Response(tumblr_imports, mimetype='application/json')
     
         
     app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))

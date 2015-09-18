@@ -2,7 +2,7 @@
           <img src="{{ url_for('static', filename='img/square-image.png') }}" alt="thumbnail">
         </div>
         <div class="content">
-          <header class="header"><a class="work-link" href="#">{{ work.title|e }}</a></header> <span class="attribution">by {{ work.author.name|e }}</span>
+          <header class="header"><a class="work-link" href="/work/{{ work.id }}/1">{{ work.title|e }}</a></header> <span class="attribution">by {{ work.author.name|e }}</span>
           {% if current_user == work.author %}
             <a class="right floated ui red button" href="/work/{{ work.id }}/add"><i class="fa fa-plus"></i> Add Chapter</a>
           {% endif %}
@@ -31,7 +31,7 @@
             {% endfor %}
           </div>
           <p class="description">
-            {{ work.summary }}
+            {{ work.summary|safe }}
           </p>
           <div class="extra content">
             Word Count 9001 | Chapters {{ work.chapters|length }} | Etc.

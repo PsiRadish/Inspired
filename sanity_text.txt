@@ -1,0 +1,4 @@
+{'class': ['story']}
+{'class': ['draft-text']}
+{'class': ['draft-text']}
+{'class': ['draft-text']}
