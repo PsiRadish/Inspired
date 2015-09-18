@@ -1,3 +1,4 @@
+# coding=utf-8
 
 print(__name__, '0')
 
@@ -23,6 +24,7 @@ class Work(Base):
     author_id       = db.Column(db.Integer, db.ForeignKey('user.id')) # one author per work for now
     chapters        = db.relationship("Chapter", order_by="Chapter.position", backref="work",
                       collection_class=ordering_list('position'))#, cascade='all, delete-orphan', passive_deletes=True)
+                      # best as I can tell, this SHOULD make the 'position' attribute auto-increment per chapter per work
     
     @validates('title')
     def validate_title(self, attribute, value):

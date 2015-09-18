@@ -1,7 +1,6 @@
+# coding=utf-8
 
-import os
-import re
-import json
+import sys, os, re, json
 from flask import Flask, Response, render_template, redirect, url_for, request, flash, session
 from flask.ext.login import LoginManager, login_required, current_user, login_user, logout_user
 from flask.ext.bcrypt import Bcrypt
@@ -16,6 +15,8 @@ from sanitize import sanitize
 
 app = Flask(__name__)
 app.config.from_object(os.environ['ENV_SETTINGS'])
+
+print('ΨΨΨΨΨΨΨΨΨΨΨΨ SQLALCHEMY_DATABASE_URI', app.config.get('SQLALCHEMY_DATABASE_URI'))
 
 db = SQLAlchemy(app)
 
@@ -226,30 +227,20 @@ if __name__ == '__main__':  # to avoid import loops
                 db.session.commit()
                 
                 flash('New work created.', 'success')
-                return redirect(url_for('add_chapter'))
-            except NameError:
+                return redirect('/work/'+str(new_work.id)+'/add')
+            except NameError as err:
                 flash('There were missing fields in the data you submitted.', 'error')
+                print(err)
                 return redirect(url_for('new_work'))
         elif request.method == 'GET':
             return render_template('work/new.html')
-    #}
-    
-    # SHOW_WORK
-    @app.route('/work/<work_id>/<int:position>')
-    def show_work(work_id, position):
-    #{
-        work = models.Work.query.options(joinedload('chapters')).get_or_404(work_id)
-        position -= 1
-        # chapter = work.chapters.filter(models.Chapter.position==position).first_or_404()
-        chapter = work.chapters[position]
-        
-        return render_template('work/show.html', work=work, chapter=chapter, chapter_count=len(work.chapters), chapter_position=chapter.position+1)
     #}
     
     # ADD CHAPTER
     @app.route('/work/<work_id>/add', methods=['GET','POST'])
     @login_required
     def add_chapter(work_id):
+    #{
         if request.method == 'POST':
             try:
                 work = models.Work.query.options(joinedload('chapters')).get_or_404(work_id)
@@ -267,6 +258,15 @@ if __name__ == '__main__':  # to avoid import loops
                 db.session.add(new_chapter)
                 db.session.commit()
                 
+                #### DEBUG FOO ####
+                try:
+                    chapter_from_db = models.Chapter.query.get(new_chapter.id)
+                    print('ΨΨΨΨΨΨΨΨΨΨΨΨ ADD CHAPTER // chapter_from_db success :', chapter_from_db)
+                except:
+                    print('ΨΨΨΨΨΨΨΨΨΨΨΨ ADD CHAPTER // chapter_from_db fail with error :', sys.exc_info()[0])
+                    raise
+                #### END DEBUG FOO ####
+                
                 flash('Chapter added.', 'success')
                 return redirect('/work/'+work_id+'/'+str(new_chapter.position+1))
             except NameError as e:
@@ -281,6 +281,28 @@ if __name__ == '__main__':  # to avoid import loops
             tumblr = current_user.tumblr_key and current_user.tumblr_secret # true or false whether to offer Tumblr import
             
             return render_template('work/add.html', work=work, default_numeral=default_numeral, tumblr=tumblr)
+    #}
+    
+    # SHOW WORK + CHAPTER
+    @app.route('/work/<work_id>/<int:position>')
+    def show_work(work_id, position):
+    #{
+        work = models.Work.query.options(joinedload('chapters')).get_or_404(work_id)
+        print('ΨΨΨΨΨΨΨΨΨΨΨΨ SHOW WORK // Work loaded :', work)
+        
+        position -= 1
+        chapter = None
+        print('ΨΨΨΨΨΨΨΨΨΨΨΨ SHOW WORK // work.chapters', work.chapters)
+        
+        try:
+            chapter = work.chapters[position]
+            print('ΨΨΨΨΨΨΨΨΨΨΨΨ SHOW WORK // Chapter retrieved :', chapter)
+        except:
+            print('ΨΨΨΨΨΨΨΨΨΨΨΨ SHOW WORK // Chapter retrieval failed with error:', sys.exc_info()[0])
+            raise
+        
+        return render_template('work/show.html', work=work, chapter=chapter, chapter_count=len(work.chapters), chapter_position=chapter.position+1)
+    #}
         
     # FRONT-END REQUESTING TUMBLR IMPORT DATA
     @app.route('/api/tumblr-import.json')

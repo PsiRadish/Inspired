@@ -1,3 +1,5 @@
+# coding=utf-8
+
 import os
 
 class Config(object):
@@ -26,4 +28,6 @@ class ProductionConfig(Config):
     DEBUG = False
     TUMBLR_CALLBACK_URL = "https://infinspired.herokuapp.com/user/dash/tumblr"
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
-    
+
+
+print('ΨΨΨΨΨΨΨΨΨΨΨΨ DATABASE_URL', os.environ.get('DATABASE_URL'))

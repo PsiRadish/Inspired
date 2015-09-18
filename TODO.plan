@@ -16,12 +16,12 @@ X adding a Work
 X properly list works in views
   X partial
   X list partial
-_ adding a Chapter vanilla
-  _ form
-  _ back-end
-  _ sanitize w/ BeautifulSoup
-_ import chapter from Tumblr
-  _ select box? [Y/N]
+X adding a Chapter vanilla
+  X form
+  X back-end
+  X sanitize w/ BeautifulSoup
+X import chapter from Tumblr
+  X select box? [No]
   0. Front-end request for all text
      post data for all user's blogs
   1. Top: list blogs w/ folder icons
