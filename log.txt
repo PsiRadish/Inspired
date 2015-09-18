@@ -1,0 +1,101 @@
+2015-09-18T17:47:25.874061+00:00 app[web.1]: 10.139.103.181 - - [18/Sep/2015 17:47:25] "GET /static/js/script.js HTTP/1.1" 200 -
+2015-09-18T17:47:25.749179+00:00 heroku[router]: at=info method=GET path="/static/css/semantic.css" host=infinspired.herokuapp.com request_id=257ef621-7279-43ec-9b52-5159b3760444 fwd="157.130.186.54" dyno=web.1 connect=0ms service=45ms status=200 bytes=1368034
+2015-09-18T17:47:25.872825+00:00 heroku[router]: at=info method=GET path="/static/css/styles.css" host=infinspired.herokuapp.com request_id=120244be-df98-4832-88ed-53542ca1812b fwd="157.130.186.54" dyno=web.1 connect=1ms service=4ms status=200 bytes=3577
+2015-09-18T17:47:25.878794+00:00 heroku[router]: at=info method=GET path="/static/js/script.js" host=infinspired.herokuapp.com request_id=2202efb1-5008-4f83-8936-f26141285fa2 fwd="157.130.186.54" dyno=web.1 connect=1ms service=5ms status=200 bytes=6470
+2015-09-18T17:47:25.870723+00:00 app[web.1]: 10.45.55.135 - - [18/Sep/2015 17:47:25] "GET /static/css/grid-anyway.css HTTP/1.1" 404 -
+2015-09-18T17:47:27.270201+00:00 heroku[router]: at=info method=GET path="/static/img/square-image.png" host=infinspired.herokuapp.com request_id=bafee87f-857c-4f2e-ba98-6123ebb639a7 fwd="157.130.186.54" dyno=web.1 connect=0ms service=5ms status=304 bytes=492
+2015-09-18T17:47:27.265539+00:00 app[web.1]: 10.139.103.181 - - [18/Sep/2015 17:47:27] "GET /static/img/square-image.png HTTP/1.1" 304 -
+2015-09-18T18:15:10.028004+00:00 heroku[router]: at=info method=GET path="/" host=infinspired.herokuapp.com request_id=835c9ce1-9998-422f-aed3-2bf4be9a26d7 fwd="157.130.186.54" dyno=web.1 connect=0ms service=561ms status=200 bytes=3364
+2015-09-18T18:15:10.023398+00:00 app[web.1]: 10.158.137.35 - - [18/Sep/2015 18:15:10] "GET / HTTP/1.1" 200 -
+2015-09-18T18:15:10.258515+00:00 app[web.1]: 10.158.137.35 - - [18/Sep/2015 18:15:10] "GET /static/css/grid-anyway.css HTTP/1.1" 404 -
+2015-09-18T18:15:10.181784+00:00 heroku[router]: at=info method=GET path="/static/css/semantic.css" host=infinspired.herokuapp.com request_id=486a1024-65ce-405f-bc70-094db4442906 fwd="157.130.186.54" dyno=web.1 connect=0ms service=4ms status=304 bytes=496
+2015-09-18T18:15:10.262962+00:00 heroku[router]: at=info method=GET path="/static/css/grid-anyway.css" host=infinspired.herokuapp.com request_id=08917dcd-ebce-4cc8-a14d-1a14a16b1191 fwd="157.130.186.54" dyno=web.1 connect=0ms service=3ms status=404 bytes=628
+2015-09-18T18:15:10.357236+00:00 app[web.1]: 10.238.9.49 - - [18/Sep/2015 18:15:10] "GET /static/js/script.js HTTP/1.1" 304 -
+2015-09-18T18:15:10.177478+00:00 app[web.1]: 10.158.137.35 - - [18/Sep/2015 18:15:10] "GET /static/css/semantic.css HTTP/1.1" 304 -
+2015-09-18T18:15:10.367124+00:00 heroku[router]: at=info method=GET path="/static/css/styles.css" host=infinspired.herokuapp.com request_id=6cca25df-5f74-48b0-8b6a-11995e7d8a4a fwd="157.130.186.54" dyno=web.1 connect=2ms service=5ms status=304 bytes=493
+2015-09-18T18:15:10.464544+00:00 heroku[router]: at=info method=GET path="/static/img/square-image.png" host=infinspired.herokuapp.com request_id=94ec9a53-1979-4344-8de9-6ca77fce0ebd fwd="157.130.186.54" dyno=web.1 connect=0ms service=4ms status=304 bytes=492
+2015-09-18T18:15:10.362326+00:00 app[web.1]: 10.168.249.153 - - [18/Sep/2015 18:15:10] "GET /static/css/styles.css HTTP/1.1" 304 -
+2015-09-18T18:15:10.459887+00:00 app[web.1]: 10.158.137.35 - - [18/Sep/2015 18:15:10] "GET /static/img/square-image.png HTTP/1.1" 304 -
+2015-09-18T18:15:10.360602+00:00 heroku[router]: at=info method=GET path="/static/js/script.js" host=infinspired.herokuapp.com request_id=53cd4229-570b-402c-a182-e0e4094f2346 fwd="157.130.186.54" dyno=web.1 connect=2ms service=6ms status=304 bytes=493
+2015-09-18T18:35:14.131272+00:00 heroku[router]: at=info method=GET path="/" host=infinspired.herokuapp.com request_id=20c46fa8-be03-4aea-bcb2-5461269bd833 fwd="157.130.186.54" dyno=web.1 connect=4ms service=35ms status=200 bytes=3364
+2015-09-18T18:35:14.288858+00:00 heroku[router]: at=info method=GET path="/static/css/semantic.css" host=infinspired.herokuapp.com request_id=fd49ce37-7719-4a34-b2c7-2af943589341 fwd="157.130.186.54" dyno=web.1 connect=0ms service=5ms status=304 bytes=496
+2015-09-18T18:35:14.125062+00:00 app[web.1]: 10.186.56.209 - - [18/Sep/2015 18:35:14] "GET / HTTP/1.1" 200 -
+2015-09-18T18:35:14.284176+00:00 app[web.1]: 10.186.56.209 - - [18/Sep/2015 18:35:14] "GET /static/css/semantic.css HTTP/1.1" 304 -
+2015-09-18T18:35:14.452055+00:00 app[web.1]: 10.69.187.242 - - [18/Sep/2015 18:35:14] "GET /static/css/styles.css HTTP/1.1" 304 -
+2015-09-18T18:35:14.466807+00:00 app[web.1]: 10.142.246.171 - - [18/Sep/2015 18:35:14] "GET /static/css/grid-anyway.css HTTP/1.1" 404 -
+2015-09-18T18:35:14.473698+00:00 heroku[router]: at=info method=GET path="/static/css/grid-anyway.css" host=infinspired.herokuapp.com request_id=79b38ef4-6b7d-4b6f-8f50-94fd02dbafd6 fwd="157.130.186.54" dyno=web.1 connect=0ms service=36ms status=404 bytes=628
+2015-09-18T18:35:14.467372+00:00 heroku[router]: at=info method=GET path="/static/css/styles.css" host=infinspired.herokuapp.com request_id=7f8c24ca-b3f8-4f59-8e35-8bf40f43fca6 fwd="157.130.186.54" dyno=web.1 connect=1ms service=31ms status=304 bytes=493
+2015-09-18T18:35:14.554401+00:00 app[web.1]: 10.186.56.209 - - [18/Sep/2015 18:35:14] "GET /static/img/square-image.png HTTP/1.1" 304 -
+2015-09-18T18:35:14.458649+00:00 app[web.1]: 10.63.199.100 - - [18/Sep/2015 18:35:14] "GET /static/js/script.js HTTP/1.1" 304 -
+2015-09-18T18:35:14.558234+00:00 heroku[router]: at=info method=GET path="/static/img/square-image.png" host=infinspired.herokuapp.com request_id=0904cf24-667a-43b5-8179-a5bd7f02ccd3 fwd="157.130.186.54" dyno=web.1 connect=1ms service=6ms status=304 bytes=492
+2015-09-18T18:35:14.475943+00:00 heroku[router]: at=info method=GET path="/static/js/script.js" host=infinspired.herokuapp.com request_id=cc69d730-f9ed-45b4-ba64-6720b9e21b35 fwd="157.130.186.54" dyno=web.1 connect=1ms service=41ms status=304 bytes=493
+2015-09-18T19:05:16.621865+00:00 heroku[router]: at=info method=GET path="/" host=infinspired.herokuapp.com request_id=90da3f63-d3a1-401f-b409-9ca2987570fa fwd="157.130.186.54" dyno=web.1 connect=2ms service=26ms status=200 bytes=3364
+2015-09-18T19:05:16.617310+00:00 app[web.1]: 10.154.205.57 - - [18/Sep/2015 19:05:16] "GET / HTTP/1.1" 200 -
+2015-09-18T19:05:16.918528+00:00 heroku[router]: at=info method=GET path="/static/js/script.js" host=infinspired.herokuapp.com request_id=e1ba985e-f150-45ee-b6be-79763a0fef30 fwd="157.130.186.54" dyno=web.1 connect=2ms service=6ms status=304 bytes=493
+2015-09-18T19:05:16.760818+00:00 heroku[router]: at=info method=GET path="/static/css/semantic.css" host=infinspired.herokuapp.com request_id=8c2d1cc5-990c-4ce8-9e1c-846310dc0083 fwd="157.130.186.54" dyno=web.1 connect=1ms service=5ms status=304 bytes=496
+2015-09-18T19:05:16.907064+00:00 heroku[router]: at=info method=GET path="/static/css/styles.css" host=infinspired.herokuapp.com request_id=ca0bee24-6d82-407e-8eb8-7d298894727f fwd="157.130.186.54" dyno=web.1 connect=1ms service=5ms status=304 bytes=493
+2015-09-18T19:05:16.756428+00:00 app[web.1]: 10.154.205.57 - - [18/Sep/2015 19:05:16] "GET /static/css/semantic.css HTTP/1.1" 304 -
+2015-09-18T19:05:16.908674+00:00 app[web.1]: 10.157.114.131 - - [18/Sep/2015 19:05:16] "GET /static/css/styles.css HTTP/1.1" 304 -
+2015-09-18T19:05:16.916962+00:00 app[web.1]: 10.159.155.105 - - [18/Sep/2015 19:05:16] "GET /static/js/script.js HTTP/1.1" 304 -
+2015-09-18T19:05:16.917111+00:00 heroku[router]: at=info method=GET path="/static/css/grid-anyway.css" host=infinspired.herokuapp.com request_id=9ec63638-0d17-47f3-9d63-ef2218efff37 fwd="157.130.186.54" dyno=web.1 connect=1ms service=5ms status=404 bytes=628
+2015-09-18T19:05:16.912533+00:00 app[web.1]: 10.169.222.28 - - [18/Sep/2015 19:05:16] "GET /static/css/grid-anyway.css HTTP/1.1" 404 -
+2015-09-18T19:05:17.021339+00:00 app[web.1]: 10.154.205.57 - - [18/Sep/2015 19:05:17] "GET /static/img/square-image.png HTTP/1.1" 304 -
+2015-09-18T19:05:17.020885+00:00 heroku[router]: at=info method=GET path="/static/img/square-image.png" host=infinspired.herokuapp.com request_id=409b93bb-ef9f-4de7-b3bc-e0559ae2084f fwd="157.130.186.54" dyno=web.1 connect=1ms service=5ms status=304 bytes=492
+2015-09-18T19:27:52.014828+00:00 heroku[router]: at=info method=GET path="/user/dash" host=infinspired.herokuapp.com request_id=715b6c05-a3c5-4094-a601-c21f227fa650 fwd="157.130.186.54" dyno=web.1 connect=1ms service=196ms status=200 bytes=4432
+2015-09-18T19:27:52.010973+00:00 app[web.1]: 10.169.149.200 - - [18/Sep/2015 19:27:52] "GET /user/dash HTTP/1.1" 200 -
+2015-09-18T19:27:52.201722+00:00 heroku[router]: at=info method=GET path="/static/css/grid-anyway.css" host=infinspired.herokuapp.com request_id=d2aa213b-1269-4786-8147-bcd6d0465405 fwd="157.130.186.54" dyno=web.1 connect=1ms service=4ms status=404 bytes=628
+2015-09-18T19:27:52.198429+00:00 app[web.1]: 10.169.149.200 - - [18/Sep/2015 19:27:52] "GET /static/css/grid-anyway.css HTTP/1.1" 404 -
+2015-09-18T19:28:09.279868+00:00 heroku[router]: at=info method=GET path="/work/new" host=infinspired.herokuapp.com request_id=83f909d9-59bb-4b9b-b104-4c8238450a20 fwd="157.130.186.54" dyno=web.1 connect=1ms service=24ms status=200 bytes=2640
+2015-09-18T19:28:09.275925+00:00 app[web.1]: 10.169.149.200 - - [18/Sep/2015 19:28:09] "GET /work/new HTTP/1.1" 200 -
+2015-09-18T19:28:09.422536+00:00 heroku[router]: at=info method=GET path="/static/css/grid-anyway.css" host=infinspired.herokuapp.com request_id=b6af4a9c-cc9c-4685-a1e3-9f9ac1cbd982 fwd="157.130.186.54" dyno=web.1 connect=1ms service=12ms status=404 bytes=628
+2015-09-18T19:28:09.410888+00:00 app[web.1]: 10.169.149.200 - - [18/Sep/2015 19:28:09] "GET /static/css/grid-anyway.css HTTP/1.1" 404 -
+2015-09-18T19:29:36.642525+00:00 heroku[router]: at=info method=POST path="/work/new" host=infinspired.herokuapp.com request_id=f7ba3265-4436-4f45-af65-c6ada9b79f0c fwd="157.130.186.54" dyno=web.1 connect=0ms service=43ms status=302 bytes=752
+2015-09-18T19:29:36.841074+00:00 heroku[router]: at=info method=GET path="/work/2/add" host=infinspired.herokuapp.com request_id=86122611-d60a-452c-ae03-03ae43ec0377 fwd="157.130.186.54" dyno=web.1 connect=1ms service=30ms status=200 bytes=2963
+2015-09-18T19:29:36.638683+00:00 app[web.1]: 10.171.126.71 - - [18/Sep/2015 19:29:36] "POST /work/new HTTP/1.1" 302 -
+2015-09-18T19:29:36.837403+00:00 app[web.1]: 10.171.126.71 - - [18/Sep/2015 19:29:36] "GET /work/2/add HTTP/1.1" 200 -
+2015-09-18T19:29:37.960667+00:00 heroku[router]: at=info method=GET path="/api/tumblr-import.json" host=infinspired.herokuapp.com request_id=a9fa59cf-856f-4874-a8b1-d715acecb968 fwd="157.130.186.54" dyno=web.1 connect=23ms service=417ms status=200 bytes=16194
+2015-09-18T19:29:37.956256+00:00 app[web.1]: 10.171.126.71 - - [18/Sep/2015 19:29:37] "GET /api/tumblr-import.json HTTP/1.1" 200 -
+2015-09-18T19:30:04.150438+00:00 heroku[router]: at=info method=GET path="/" host=infinspired.herokuapp.com request_id=74b60455-db97-42a2-b416-2a058db71b34 fwd="157.130.186.54" dyno=web.1 connect=2ms service=52ms status=200 bytes=5279
+2015-09-18T19:30:04.146743+00:00 app[web.1]: 10.171.126.71 - - [18/Sep/2015 19:30:04] "GET / HTTP/1.1" 200 -
+2015-09-18T19:30:04.293788+00:00 heroku[router]: at=info method=GET path="/static/css/semantic.css" host=infinspired.herokuapp.com request_id=6b4b8491-72f5-4c3f-9bc4-168813ab63f0 fwd="157.130.186.54" dyno=web.1 connect=1ms service=4ms status=304 bytes=496
+2015-09-18T19:30:04.453421+00:00 heroku[router]: at=info method=GET path="/static/css/styles.css" host=infinspired.herokuapp.com request_id=2fb76f85-0708-4e4d-8b00-d30cb296aeff fwd="157.130.186.54" dyno=web.1 connect=0ms service=11ms status=304 bytes=493
+2015-09-18T19:30:04.453539+00:00 heroku[router]: at=info method=GET path="/static/js/script.js" host=infinspired.herokuapp.com request_id=d320865c-e359-42df-b1dd-2bacc979feb7 fwd="157.130.186.54" dyno=web.1 connect=0ms service=12ms status=304 bytes=493
+2015-09-18T19:30:04.290225+00:00 app[web.1]: 10.171.126.71 - - [18/Sep/2015 19:30:04] "GET /static/css/semantic.css HTTP/1.1" 304 -
+2015-09-18T19:30:04.447730+00:00 app[web.1]: 10.41.193.115 - - [18/Sep/2015 19:30:04] "GET /static/css/styles.css HTTP/1.1" 304 -
+2015-09-18T19:30:04.453808+00:00 app[web.1]: 10.236.249.87 - - [18/Sep/2015 19:30:04] "GET /static/css/grid-anyway.css HTTP/1.1" 404 -
+2015-09-18T19:30:04.541808+00:00 heroku[router]: at=info method=GET path="/static/img/square-image.png" host=infinspired.herokuapp.com request_id=7db21255-d11c-4b5e-b6ff-cc741adeab3f fwd="157.130.186.54" dyno=web.1 connect=1ms service=6ms status=304 bytes=492
+2015-09-18T19:30:04.538135+00:00 app[web.1]: 10.171.126.71 - - [18/Sep/2015 19:30:04] "GET /static/img/square-image.png HTTP/1.1" 304 -
+2015-09-18T19:30:04.451062+00:00 app[web.1]: 10.63.199.100 - - [18/Sep/2015 19:30:04] "GET /static/js/script.js HTTP/1.1" 304 -
+2015-09-18T19:30:04.458425+00:00 heroku[router]: at=info method=GET path="/static/css/grid-anyway.css" host=infinspired.herokuapp.com request_id=de2c53aa-66de-406b-b1b4-215d2ea73593 fwd="157.130.186.54" dyno=web.1 connect=0ms service=12ms status=404 bytes=628
+2015-09-18T19:30:16.333723+00:00 heroku[router]: at=info method=GET path="/work/1/add" host=infinspired.herokuapp.com request_id=8fa5bd8f-5322-4f34-b1e1-b09b2565af7c fwd="157.130.186.54" dyno=web.1 connect=1ms service=22ms status=200 bytes=2566
+2015-09-18T19:30:16.330146+00:00 app[web.1]: 10.171.126.71 - - [18/Sep/2015 19:30:16] "GET /work/1/add HTTP/1.1" 200 -
+2015-09-18T19:30:16.484636+00:00 heroku[router]: at=info method=GET path="/static/css/grid-anyway.css" host=infinspired.herokuapp.com request_id=e9cf1351-2670-4e1a-849c-734c6e996c38 fwd="157.130.186.54" dyno=web.1 connect=1ms service=4ms status=404 bytes=628
+2015-09-18T19:30:16.480952+00:00 app[web.1]: 10.171.126.71 - - [18/Sep/2015 19:30:16] "GET /static/css/grid-anyway.css HTTP/1.1" 404 -
+2015-09-18T19:30:17.148135+00:00 heroku[router]: at=info method=GET path="/api/tumblr-import.json" host=infinspired.herokuapp.com request_id=6394f317-b7fd-45af-bc40-d900279caee8 fwd="157.130.186.54" dyno=web.1 connect=0ms service=377ms status=200 bytes=16194
+2015-09-18T19:30:17.139183+00:00 app[web.1]: 10.171.126.71 - - [18/Sep/2015 19:30:17] "GET /api/tumblr-import.json HTTP/1.1" 200 -
+2015-09-18T19:31:08.742860+00:00 app[web.1]: ΨΨΨΨΨΨΨΨΨΨΨΨ ADD CHAPTER // chapter_from_db success : <models.work.Chapter object at 0x7f9bc958c2b0>
+2015-09-18T19:31:08.980645+00:00 app[web.1]: ΨΨΨΨΨΨΨΨΨΨΨΨ SHOW WORK // Work loaded : <models.work.Work object at 0x7f9bcf14ceb8>
+2015-09-18T19:31:08.980655+00:00 app[web.1]: ΨΨΨΨΨΨΨΨΨΨΨΨ SHOW WORK // work.chapters [<models.work.Chapter object at 0x7f9bc9e2ed68>]
+2015-09-18T19:31:08.980675+00:00 app[web.1]: ΨΨΨΨΨΨΨΨΨΨΨΨ SHOW WORK // Chapter retrieval failed with error: <class 'IndexError'>
+2015-09-18T19:31:08.981327+00:00 app[web.1]: 10.168.190.187 - - [18/Sep/2015 19:31:08] "GET /work/1/2 HTTP/1.1" 500 -
+2015-09-18T19:31:08.760173+00:00 app[web.1]: 10.171.126.71 - - [18/Sep/2015 19:31:08] "POST /work/1/add HTTP/1.1" 302 -
+2015-09-18T19:31:08.764655+00:00 heroku[router]: at=info method=POST path="/work/1/add" host=infinspired.herokuapp.com request_id=81b9fc25-6986-4c01-b5f0-48ab02954362 fwd="157.130.186.54" dyno=web.1 connect=0ms service=169ms status=302 bytes=739
+2015-09-18T19:31:08.986547+00:00 heroku[router]: at=info method=GET path="/work/1/2" host=infinspired.herokuapp.com request_id=c780e613-eece-4f90-953f-9ca8340ce9cb fwd="157.130.186.54" dyno=web.1 connect=0ms service=56ms status=500 bytes=450
+2015-09-18T19:31:38.808386+00:00 heroku[router]: at=info method=GET path="/" host=infinspired.herokuapp.com request_id=fde28a98-714d-4323-ad34-42a8002c8ea9 fwd="157.130.186.54" dyno=web.1 connect=0ms service=24ms status=200 bytes=5666
+2015-09-18T19:31:38.802923+00:00 app[web.1]: 10.168.190.187 - - [18/Sep/2015 19:31:38] "GET / HTTP/1.1" 200 -
+2015-09-18T19:45:31.657647+00:00 heroku[router]: at=info method=GET path="/work/1/add" host=infinspired.herokuapp.com request_id=3691326c-0168-4961-862e-fb2558bcd1e6 fwd="157.130.186.54" dyno=web.1 connect=2ms service=24ms status=200 bytes=2566
+2015-09-18T19:45:31.653074+00:00 app[web.1]: 10.31.118.177 - - [18/Sep/2015 19:45:31] "GET /work/1/add HTTP/1.1" 200 -
+2015-09-18T19:45:32.670055+00:00 heroku[router]: at=info method=GET path="/api/tumblr-import.json" host=infinspired.herokuapp.com request_id=c9df9e44-4bba-4455-a330-b9a836a96027 fwd="157.130.186.54" dyno=web.1 connect=1ms service=395ms status=200 bytes=16194
+2015-09-18T19:45:32.666233+00:00 app[web.1]: 10.31.118.177 - - [18/Sep/2015 19:45:32] "GET /api/tumblr-import.json HTTP/1.1" 200 -
+2015-09-18T19:47:03.268117+00:00 heroku[router]: at=info method=POST path="/work/1/add" host=infinspired.herokuapp.com request_id=6a8b2dc7-e9de-4f7e-8c3c-55b3585e3750 fwd="157.130.186.54" dyno=web.1 connect=2ms service=94ms status=302 bytes=739
+2015-09-18T19:47:03.260397+00:00 app[web.1]: ΨΨΨΨΨΨΨΨΨΨΨΨ ADD CHAPTER // chapter_from_db success : <models.work.Chapter object at 0x7f9bc9e74f60>
+2015-09-18T19:47:03.478034+00:00 app[web.1]: ΨΨΨΨΨΨΨΨΨΨΨΨ SHOW WORK // Work loaded : <models.work.Work object at 0x7f9bcf14ceb8>
+2015-09-18T19:47:03.478049+00:00 app[web.1]: ΨΨΨΨΨΨΨΨΨΨΨΨ SHOW WORK // work.chapters [<models.work.Chapter object at 0x7f9bc9e2ed68>]
+2015-09-18T19:47:03.478076+00:00 app[web.1]: ΨΨΨΨΨΨΨΨΨΨΨΨ SHOW WORK // Chapter retrieval failed with error: <class 'IndexError'>
+2015-09-18T19:47:03.478726+00:00 app[web.1]: 10.157.114.131 - - [18/Sep/2015 19:47:03] "GET /work/1/2 HTTP/1.1" 500 -
+2015-09-18T19:47:03.263292+00:00 app[web.1]: 10.157.114.131 - - [18/Sep/2015 19:47:03] "POST /work/1/add HTTP/1.1" 302 -
+2015-09-18T19:47:03.485224+00:00 heroku[router]: at=info method=GET path="/work/1/2" host=infinspired.herokuapp.com request_id=335abbfd-1a6a-4d0c-a854-220928d544cf fwd="157.130.186.54" dyno=web.1 connect=2ms service=24ms status=500 bytes=450
+2015-09-18T19:47:03.773546+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=infinspired.herokuapp.com request_id=86186753-6f27-4a37-831e-88399dad2470 fwd="157.130.186.54" dyno=web.1 connect=2ms service=7ms status=404 bytes=683
+2015-09-18T19:47:03.868779+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=infinspired.herokuapp.com request_id=fea536bb-524d-41da-bb68-ed7c6867c3d7 fwd="157.130.186.54" dyno=web.1 connect=2ms service=5ms status=404 bytes=683
+2015-09-18T19:47:03.768798+00:00 app[web.1]: 10.157.114.131 - - [18/Sep/2015 19:47:03] "GET /favicon.ico HTTP/1.1" 404 -
+2015-09-18T19:47:03.863811+00:00 app[web.1]: 10.157.114.131 - - [18/Sep/2015 19:47:03] "GET /favicon.ico HTTP/1.1" 404 -

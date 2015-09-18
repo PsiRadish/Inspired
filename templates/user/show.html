@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}Your Dashboard {{ super() }}{% endblock %}
+{% block title %}{{ "Your" if user == current_user else user.name+"'s" }} Dashboard {{ super() }}{% endblock %}
 
 {% block content %}
 
@@ -58,7 +58,7 @@
   
   <div id="user-work-list" class="left aligned column ui segment">
     <h2>Works by {{ user.name|e }}</h2>
-    <a class="new-work-button right floated ui red button" href="{{ url_for('new_work') }}"><i class="fa fa-plus"></i> New Work</a>
+    {% if user == current_user %}<a class="new-work-button right floated ui red button" href="{{ url_for('new_work') }}"><i class="fa fa-plus"></i> New Work</a>{% endif %}
     {% with works = user.works %}
     {% include 'work/_work_list.html' %}
     {% endwith %}
