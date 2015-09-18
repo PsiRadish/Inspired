@@ -14,16 +14,15 @@ class User(Base, UserMixin):
     password        = db.Column(db.String, nullable=False)
     tumblr_key      = db.Column(db.String(50))
     tumblr_secret   = db.Column(db.String(50))
-    
     about           = db.Column(db.Text, default="")
     
     # RELATIONSHIPS
     works = db.relationship("Work", backref="author")
     
     # INITIALIZATION
-    @reconstructor
-    def init_on_load(self):
-        self.tumblr_oauth = None
+    # @reconstructor
+    # def init_on_load(self):
+    #     self.tumblr_oauth = None
     
     # VALIDATION
     @validates('email')

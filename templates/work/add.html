@@ -23,17 +23,15 @@
     <input name="char_tags" type="text" placeholder="Character, Character, Character">
   </div>
   <div class="field">
-    <label>Relationship(s):</label>
-    <input name="ship_tags" type="text" placeholder="Ship, Ship, Ship">
+    <label>Numeral:</label>
+    <input name="numeral" type="text" placeholder="Chapter numbers in order? Totally optional."
+           value="Chapter {{ work }}">
   </div>
   <div class="field">
-    <label>Summary:</label>
-    <textarea name="summary" placeholder="In a world..."></textarea>
+    <label>Body:</label>
+    <textarea name="body" placeholder="One day, on the way to the crematorium..."></textarea>
   </div>
-  <button class="ui button" type="submit">Next</button>
-  <div class="ui message">
-    <p>We'll add chapters after this.</p>
-  </div>
+  <button class="ui button" type="submit">Submit</button>
 </form>
 
 {% endblock %}

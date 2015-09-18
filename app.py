@@ -1,9 +1,11 @@
 
 import os
+import re
 from flask import Flask, render_template, redirect, url_for, request, flash, session
 from flask.ext.login import LoginManager, login_required, current_user, login_user, logout_user
 from flask.ext.bcrypt import Bcrypt
 from flask.ext.sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import joinedload
 
 from requests_oauthlib import OAuth1Session
 import pytumblr
@@ -63,13 +65,16 @@ if __name__ == '__main__':  # to avoid import loops
     
     @login_manager.user_loader
     def load_user(user_id):
-        return models.User.query.get(user_id)
+        return models.User.query.options(joinedload('works')).get(user_id)
     
-    # Routes
+    ####### ROUTES #########
+    ########################
+    # MAIN INDEX
     @app.route('/')
     def index():
-        return render_template('index.html')
+        return render_template('index.html', works=models.Work.query.all())
     
+    # LOGIN
     @app.route('/login', methods=['GET', 'POST'])
     def login():
     #{
@@ -92,10 +97,11 @@ if __name__ == '__main__':  # to avoid import loops
             except NameError:
                 flash('There were missing fields in the data you submitted.', 'error')
                 return redirect(url_for('login'))
-        return render_template('user/login.html')
+        elif request.method == 'GET':
+            return render_template('user/login.html')
     #}
     
-    # USER SIGN UP
+    # NEW USER
     @app.route('/signup', methods=['GET', 'POST'])
     def signup():
     #{
@@ -107,7 +113,8 @@ if __name__ == '__main__':  # to avoid import loops
                 {
                     'name': request.form['name'],
                     'email': request.form['email'],
-                    'password': bcrypt.generate_password_hash(request.form['password'])
+                    'password': bcrypt.generate_password_hash(request.form['password']),
+                    'about': request.form.get('about', "")
                 }
                 
                 new_user = models.User(**new_user_data)
@@ -124,9 +131,8 @@ if __name__ == '__main__':  # to avoid import loops
                 return redirect(url_for('signup'))
             # except IntegrityError:
             #     flash('That e-mail address or display name is already in use.');
-            # not sure it was IntegrityError when uniqueness violated...
-            
-        else: # GET: Show sign up form
+            # not sure it was IntegrityError when uniqueness violated...    
+        elif request.method == 'GET': # Show sign up form
             if not current_user.is_authenticated: # but not if they're already logged in
                 return render_template('user/new.html')
             else:
@@ -143,7 +149,7 @@ if __name__ == '__main__':  # to avoid import loops
     # SHOW USER
     @app.route('/user/<int:id>')
     def user_show(id):
-        user = models.User.query.get_or_404(id)#.options(joinedload('works'))
+        user = models.User.query.options(joinedload('works')).get_or_404(id)
         
         if user == current_user:
             return redirect(url_for('user_dash'))
@@ -155,7 +161,7 @@ if __name__ == '__main__':  # to avoid import loops
     @app.route('/user/dash')
     @login_required
     def user_dash():
-        tumblr_info = get_tumblr_info(current_user)#.options(joinedload('works'))
+        tumblr_info = get_tumblr_info(current_user)
         return render_template('user/show.html', user=current_user, tumblr_info=tumblr_info)
     
     # TUMBLR CALLBACK
@@ -165,20 +171,79 @@ if __name__ == '__main__':  # to avoid import loops
         try:
             # retrieve the OAuth1Session matching this oauth_token
             tumblr_oauth = oauth_sessions[request.args['oauth_token']]
+            # oauth_sessions[request.args['oauth_token']] = None  # It's been used, remove it from the list
             
             tumblr_oauth.parse_authorization_response(request.url)
             access_tokens = tumblr_oauth.fetch_access_token(app.config['TUMBLR_ACCESS_TOKEN_URL'])
             
+            # add_tumblr = \
+            # {
+            #     'tumblr_key': access_tokens['oauth_token'],
+            #     'tumblr_secret': access_tokens['oauth_token_secret']
+            # }
+            # db.session.query().filter(models.User.id == current_user.id).update(add_tumblr)
             current_user.tumblr_key = access_tokens['oauth_token']
             current_user.tumblr_secret = access_tokens['oauth_token_secret']
+            db.session.merge(current_user)
             db.session.commit()
             
             flash('Tumblr authorization successful.', 'success')
         except NameError as err:
-            print(err)
+            print("NAME_ERROR NAME_ERROR NAME_ERROR", err)
             flash('Tumblr authorization failed.', 'error')
         
         return redirect(url_for('user_dash'))
-
+    
+    # NEW WORK
+    @app.route('/work/new', methods=['GET', 'POST'])
+    @login_required
+    def new_work():
+    #{
+        if request.method == 'POST':
+            try:
+                new_work_data = \
+                {
+                    'title': request.form['title'],
+                    'fandom_tags': re.split('\s*,\s*', request.form['fandom_tags']),
+                    'content_tags': re.split('\s*,\s*', request.form['content_tags']),
+                    'char_tags': re.split('\s*,\s*', request.form['char_tags']),
+                    'ship_tags': re.split('\s*,\s*', request.form['ship_tags']),
+                    'summary': request.form['summary']
+                }
+                
+                new_work = models.Work(**new_work_data)
+                new_work.author = current_user
+                
+                db.session.add(new_work)
+                db.session.commit()
+                return redirect(url_for('index'))
+            except NameError:
+                flash('There were missing fields in the data you submitted.', 'error')
+                return redirect(url_for('new_work'))
+        elif request.method == 'GET':
+            return render_template('work/new.html')
+    #}
+    
+    # SHOW_WORK
+    @app.route('/work/<work_id>/<chap_order>')
+    def show_work(work_id, chap_order):
+    #{
+        work = models.Work.query.options(joinedload('chapters')).get_or_404(work_id)
+        chapter = work.chapters.filter(models.Chapter.order==chap_order).first_or_404()
+        
+        return render_template('work/show.html', work=work, chapter=chapter)
+    #}
+    
+    # ADD CHAPTER
+    @app.route('/work/<work_id>/add', methods=['GET','POST'])
+    # @app.route('/work/add', methods=['POST'])
+    def add_chapter(work_id):
+        if request.method == 'POST':
+            
+        elif request.method == 'GET':
+            work = models.Work.query.options(joinedload('chapters')).get_or_404(work_id)
+            return render_template('work/add.html', work=work)
+    
+    
     app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
 #}

@@ -10,12 +10,12 @@ X add Tumblr username display to user dashboard
 X implement adding Tumblr oauth to account
 X Design work model
 X Implement work model
-_ adding a Work
-  _ form
-  _ back-end
-_ properly list works in views
-  _ partial
-  _ list partial
+X adding a Work
+  X form
+  X back-end
+X properly list works in views
+  X partial
+  X list partial
 _ adding a Chapter vanilla
   _ form
   _ back-end
@@ -33,6 +33,9 @@ _ import chapter from Tumblr
      ?. What if the post used
         rich text/markdown?
 X Flask oAuth
+
+
+Casey 1:30 Wed the 30th
 
 
 SANITIZATION
@@ -99,7 +102,7 @@ SANITIZATION
   [axis]
   [class]
   [height]
-  [href]  (unless value starts w/ "javascript:")
+  //[href]  (unless value starts w/ "javascript:")
   [name]
   [src]
   [title]

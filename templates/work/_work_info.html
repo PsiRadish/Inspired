@@ -1,0 +1,39 @@
+        <div class="ui tiny image">
+          <img src="{{ url_for('static', filename='img/square-image.png') }}" alt="thumbnail">
+        </div>
+        <div class="content">
+          <header class="header"><a class="work-link" href="#">{{ work.title }}</a></header> <span class="attribution">by {{ work.author.name }}</span>
+          {% if current_user == work.author %}
+            <a class="right floated ui teal button" href="/work/{{ work.id }}/add"><i class="fa fa-plus"></i> Add Chapter</a>
+          {% endif %}
+          <div class="meta">
+            <label class="ui red ribbon label">Fandom(s)</label>
+            {% for fandom in work.fandom_tags %}
+              <a>{{ fandom }}</a>
+            {% endfor %}
+          </div>
+          <div class="meta">
+            <label class="ui red ribbon label">Content</label>
+            {% for content in work.content_tags %}
+              <a>{{ content }}</a>
+            {% endfor %}
+          </div>
+          <div class="meta">
+            <label class="ui red ribbon label">Characters</label>
+            {% for char in work.char_tags %}
+              <a>{{ char }}</a>
+            {% endfor %}
+          </div>
+          <div class="meta">
+            <label class="ui red ribbon label">Relationship(s)</label>
+            {% for ship in work.ship_tags %}
+              <a>{{ ship }}</a>
+            {% endfor %}
+          </div>
+          <p class="description">
+            {{ work.summary }}
+          </p>
+          <div class="extra content">
+            Word Count 9001 | Chapters {{ work.chapters|length }} | Etc.
+          </div>
+        </div>

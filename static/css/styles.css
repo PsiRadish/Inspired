@@ -10,6 +10,35 @@ p
     width: 100%;
 }
 
+/* Animated underline */
+*:not(.meta):not(.menu) > a:not(.button)
+{
+    position: relative;
+}
+*:not(.meta):not(.menu) > a:not(.button)::before
+{
+    position: absolute;
+    top: auto;
+    bottom: 1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #4183C4;
+    content: '';
+    -webkit-transition: all 0.2s;
+            transition: all 0.2s;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+}
+*:not(.meta):not(.menu) > a:not(.button):hover::before
+{
+    background-color: #2C76BF;
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+}
+
 #brand-tag-line::before
 {
     background: none;
@@ -44,19 +73,23 @@ legend
     width: 124px;
 }
 
-.ui.items > .item.work-item .meta .label
+/*.ui.items > .item.work-item .meta .label*/
+.work-item .meta .label
 {
-    margin-right: -6px;
+    margin-right: -6px !important;
 }
-.ui.items > .item.work-item .meta *:not(.label)
+/*.ui.items > .item.work-item .meta *:not(.label)*/
+.work-item .meta *:not(.label)
 {
     border-bottom: 1px dotted #444;
 }
-.ui.items > .item.work-item .meta *:not(.label):not(:last-child)
+/*.ui.items > .item.work-item .meta *:not(.label):not(:last-child)*/
+.work-item .meta *:not(.label):not(:last-child)
 {
     margin-right: 6px;
 }
-.ui.items > .item.work-item .meta *:not(.label):not(:last-child)::after
+/*.ui.items > .item.work-item .meta *:not(.label):not(:last-child)::after*/
+.work-item .meta *:not(.label):not(:last-child)::after
 {
     content: ",";
 }
@@ -97,32 +130,21 @@ legend
     color: #4183C4;
 }
 
-/* Animated underline */
-*:not(.meta):not(.menu) > a:not(.button)
+#user-show
 {
-    position: relative;
-}
-*:not(.meta):not(.menu) > a:not(.button)::before
-{
-    position: absolute;
-    top: auto;
-    bottom: 1px;
-    left: 0;
     width: 100%;
-    height: 1px;
-    background-color: #4183C4;
-    content: '';
-    -webkit-transition: all 0.2s;
-            transition: all 0.2s;
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-    -webkit-transform: scaleX(0);
-            transform: scaleX(0);
 }
 
-*:not(.meta):not(.menu) > a:not(.button):hover::before
+#user-card
 {
-    background-color: #2C76BF;
-    -webkit-transform: scaleX(1);
-            transform: scaleX(1);
+    width: 268px;
+}
+
+#user-work-list
+{
+    width: calc(100% - 268px);
+}
+#user-work-list h2
+{
+    display: inline-block;
 }

@@ -1,0 +1,121 @@
+/*-------------------
+    Gridding without side effects
+--------------------*/
+
+.ui.grid-anyway
+{
+    width: 100%;
+}
+
+.ui.grid-anyway > .row > [class*="one wide"].column,
+.ui.grid-anyway > .column.row > [class*="one wide"].column,
+.ui.grid-anyway > [class*="one wide"].column,
+.ui.column.grid-anyway > [class*="one wide"].column 
+{
+    width: 6.25% !important;
+}
+.ui.grid-anyway > .row > [class*="two wide"].column,
+.ui.grid-anyway > .column.row > [class*="two wide"].column,
+.ui.grid-anyway > [class*="two wide"].column,
+.ui.column.grid-anyway > [class*="two wide"].column 
+{
+    width: 12.5% !important;
+}
+.ui.grid-anyway > .row > [class*="three wide"].column,
+.ui.grid-anyway > .column.row > [class*="three wide"].column,
+.ui.grid-anyway > [class*="three wide"].column,
+.ui.column.grid-anyway > [class*="three wide"].column 
+{
+    width: 18.75% !important;
+}
+.ui.grid-anyway > .row > [class*="four wide"].column,
+.ui.grid-anyway > .column.row > [class*="four wide"].column,
+.ui.grid-anyway > [class*="four wide"].column,
+.ui.column.grid-anyway > [class*="four wide"].column 
+{
+    width: 25% !important;
+}
+.ui.grid-anyway > .row > [class*="five wide"].column,
+.ui.grid-anyway > .column.row > [class*="five wide"].column,
+.ui.grid-anyway > [class*="five wide"].column,
+.ui.column.grid-anyway > [class*="five wide"].column 
+{
+    width: 31.25% !important;
+}
+.ui.grid-anyway > .row > [class*="six wide"].column,
+.ui.grid-anyway > .column.row > [class*="six wide"].column,
+.ui.grid-anyway > [class*="six wide"].column,
+.ui.column.grid-anyway > [class*="six wide"].column 
+{
+    width: 37.5% !important;
+}
+.ui.grid-anyway > .row > [class*="seven wide"].column,
+.ui.grid-anyway > .column.row > [class*="seven wide"].column,
+.ui.grid-anyway > [class*="seven wide"].column,
+.ui.column.grid-anyway > [class*="seven wide"].column 
+{
+    width: 43.75% !important;
+}
+.ui.grid-anyway > .row > [class*="eight wide"].column,
+.ui.grid-anyway > .column.row > [class*="eight wide"].column,
+.ui.grid-anyway > [class*="eight wide"].column,
+.ui.column.grid-anyway > [class*="eight wide"].column 
+{
+    width: 50% !important;
+}
+.ui.grid-anyway > .row > [class*="nine wide"].column,
+.ui.grid-anyway > .column.row > [class*="nine wide"].column,
+.ui.grid-anyway > [class*="nine wide"].column,
+.ui.column.grid-anyway > [class*="nine wide"].column 
+{
+    width: 56.25% !important;
+}
+.ui.grid-anyway > .row > [class*="ten wide"].column,
+.ui.grid-anyway > .column.row > [class*="ten wide"].column,
+.ui.grid-anyway > [class*="ten wide"].column,
+.ui.column.grid-anyway > [class*="ten wide"].column 
+{
+    width: 62.5% !important;
+}
+.ui.grid-anyway > .row > [class*="eleven wide"].column,
+.ui.grid-anyway > .column.row > [class*="eleven wide"].column,
+.ui.grid-anyway > [class*="eleven wide"].column,
+.ui.column.grid-anyway > [class*="eleven wide"].column 
+{
+    width: 68.75% !important;
+}
+.ui.grid-anyway > .row > [class*="twelve wide"].column,
+.ui.grid-anyway > .column.row > [class*="twelve wide"].column,
+.ui.grid-anyway > [class*="twelve wide"].column,
+.ui.column.grid-anyway > [class*="twelve wide"].column 
+{
+    width: 75% !important;
+}
+.ui.grid-anyway > .row > [class*="thirteen wide"].column,
+.ui.grid-anyway > .column.row > [class*="thirteen wide"].column,
+.ui.grid-anyway > [class*="thirteen wide"].column,
+.ui.column.grid-anyway > [class*="thirteen wide"].column 
+{
+    width: 81.25% !important;
+}
+.ui.grid-anyway > .row > [class*="fourteen wide"].column,
+.ui.grid-anyway > .column.row > [class*="fourteen wide"].column,
+.ui.grid-anyway > [class*="fourteen wide"].column,
+.ui.column.grid-anyway > [class*="fourteen wide"].column 
+{
+    width: 87.5% !important;
+}
+.ui.grid-anyway > .row > [class*="fifteen wide"].column,
+.ui.grid-anyway > .column.row > [class*="fifteen wide"].column,
+.ui.grid-anyway > [class*="fifteen wide"].column,
+.ui.column.grid-anyway > [class*="fifteen wide"].column 
+{
+    width: 93.75% !important;
+}
+.ui.grid-anyway > .row > [class*="sixteen wide"].column,
+.ui.grid-anyway > .column.row > [class*="sixteen wide"].column,
+.ui.grid-anyway > [class*="sixteen wide"].column,
+.ui.column.grid-anyway > [class*="sixteen wide"].column 
+{
+    width: 100% !important;
+}
